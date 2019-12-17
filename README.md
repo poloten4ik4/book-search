@@ -38,7 +38,7 @@ Mikhail Zaslavskiy – mikezsmike93@gmail.com
 
 Distributed under the MIT License license. See ``LICENSE`` for more information.
 
-[swift-image]:https://img.shields.io/badge/swift-3.0-orange.svg
+[swift-image]:https://img.shields.io/badge/Swift-5.0%2B-orange
 [swift-url]: https://swift.org/
 [license-image]: https://img.shields.io/badge/License-MIT-blue.svg
 [license-url]: LICENSE
