@@ -16,4 +16,5 @@ class SearchViewModel {
             print(result)
         }
     }
+
 }

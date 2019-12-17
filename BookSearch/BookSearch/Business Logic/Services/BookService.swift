@@ -16,7 +16,17 @@ final class BookService: Service {
         let searchEndpoint = BookEndpoint.search(keyword: searchString, page: page)
         apiClient.requestObject(endpoint: searchEndpoint) { (response: Result<BookSearchResult, ApiError>) in
             completion(response)
+            guard let bookSearchResult = try? response.get() else { return }
+            persist(books: bookSearchResult.docs)
         }
+    }
+    
+    
+    private func persist(books: [BookInfo]) {
+        realmDataProvider.add(books, update: true)
+        
+        
+        print(realmDataProvider.objects(BookInfo))
     }
 //    
 //    func obtainWishList() -> [Book] {
