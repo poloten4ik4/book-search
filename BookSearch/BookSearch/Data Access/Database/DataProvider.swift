@@ -37,6 +37,8 @@ class DataProvider {
         if realm.isInWriteTransaction {
             realm.add(data, update: update ? .all : .error)
         } else {
+            // TODO: Need to handle write transaction failure.
+            // Write transactions could potentially fail like any other disk IO operations
             try? realm.write {
                 realm.add(data, update: update ? .all : .error)
             }
@@ -53,6 +55,8 @@ class DataProvider {
         let realm = try! Realm()
         realm.refresh()
 
+        // TODO: Need to handle write transaction failure.
+        // Write transactions could potentially fail like any other disk IO operations
         try? realm.write {
             action()
         }
@@ -61,6 +65,8 @@ class DataProvider {
     func delete<T: Object>(_ data: [T]) {
         let realm = try! Realm()
         realm.refresh()
+        // TODO: Need to handle write transaction failure.
+        // Write transactions could potentially fail like any other disk IO operations
         try? realm.write { realm.delete(data) }
     }
 
@@ -73,6 +79,8 @@ class DataProvider {
 
         let realm = try! Realm()
         realm.refresh()
+        // TODO: Need to handle write transaction failure.
+        // Write transactions could potentially fail like any other disk IO operations
         try? realm.write { realm.deleteAll() }
     }
 }
