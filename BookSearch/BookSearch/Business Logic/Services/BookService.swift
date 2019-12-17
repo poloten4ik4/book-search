@@ -10,10 +10,14 @@ import Foundation
 
 final class BookService: Service {
     let realmDataProvider = DataProvider()
+    let apiClient = NetworkClientImp()
     
-//    func search(for searchString: String, page: Int = 0, completion: @escaping (Result<Int, Error>) -> Void)  {
-//        
-//    }
+    func search(for searchString: String, page: Int, completion: @escaping (Result<BookSearchResult, ApiError>) -> Void)  {
+        let searchEndpoint = BookEndpoint.search(keyword: searchString, page: page)
+        apiClient.requestObject(endpoint: searchEndpoint) { (response: Result<BookSearchResult, ApiError>) in
+            completion(response)
+        }
+    }
 //    
 //    func obtainWishList() -> [Book] {
 //        realmDataProvider.objects(Book.self)

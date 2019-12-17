@@ -29,6 +29,7 @@
 		BDCD698323A91485003E7C77 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD697F23A91485003E7C77 /* Endpoint.swift */; };
 		BDCD698423A91485003E7C77 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD698123A91485003E7C77 /* NetworkClient.swift */; };
 		BDCD698523A91485003E7C77 /* NetworkClientImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD698223A91485003E7C77 /* NetworkClientImp.swift */; };
+		BDCD698723A91B2B003E7C77 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD698623A91B2B003E7C77 /* SearchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		BDCD697F23A91485003E7C77 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		BDCD698123A91485003E7C77 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		BDCD698223A91485003E7C77 /* NetworkClientImp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClientImp.swift; sourceTree = "<group>"; };
+		BDCD698623A91B2B003E7C77 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		CF0178227480D10079771F8A /* Pods-BookSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookSearch.debug.xcconfig"; path = "Target Support Files/Pods-BookSearch/Pods-BookSearch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -214,7 +216,6 @@
 		BD0532C723A8F16A009ECB87 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				BD0532CD23A8F1EC009ECB87 /* Router */,
 				BD0532CC23A8F1E5009ECB87 /* View */,
 				BD0532CA23A8F1D9009ECB87 /* ViewController */,
 				BD0532CB23A8F1E0009ECB87 /* ViewModel */,
@@ -225,7 +226,6 @@
 		BD0532C823A8F1B1009ECB87 /* Wishlist */ = {
 			isa = PBXGroup;
 			children = (
-				BD0532CF23A8F1FC009ECB87 /* Router */,
 				BD0532D223A8F20A009ECB87 /* View */,
 				BD0532D023A8F200009ECB87 /* ViewController */,
 				BD0532D123A8F206009ECB87 /* ViewModel */,
@@ -236,7 +236,6 @@
 		BD0532C923A8F1B7009ECB87 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				BD0532CE23A8F1F2009ECB87 /* Router */,
 				BD0532B323A8E6E3009ECB87 /* View */,
 				BD0532B423A8E6E6009ECB87 /* ViewController */,
 				BD0532B223A8E6DD009ECB87 /* ViewModel */,
@@ -255,6 +254,7 @@
 		BD0532CB23A8F1E0009ECB87 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				BDCD698623A91B2B003E7C77 /* SearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -264,27 +264,6 @@
 			children = (
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		BD0532CD23A8F1EC009ECB87 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Router;
-			sourceTree = "<group>";
-		};
-		BD0532CE23A8F1F2009ECB87 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Router;
-			sourceTree = "<group>";
-		};
-		BD0532CF23A8F1FC009ECB87 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Router;
 			sourceTree = "<group>";
 		};
 		BD0532D023A8F200009ECB87 /* ViewController */ = {
@@ -514,6 +493,7 @@
 				BDCD695C23A8FD24003E7C77 /* Coordinator.swift in Sources */,
 				BDCD697B23A91477003E7C77 /* BookInfo.swift in Sources */,
 				BDCD698423A91485003E7C77 /* NetworkClient.swift in Sources */,
+				BDCD698723A91B2B003E7C77 /* SearchViewModel.swift in Sources */,
 				BDCD696623A90018003E7C77 /* WishListCoordinator.swift in Sources */,
 				BDCD697C23A91477003E7C77 /* BookEndpoint.swift in Sources */,
 				BDCD697D23A91477003E7C77 /* ApiEndpoint.swift in Sources */,

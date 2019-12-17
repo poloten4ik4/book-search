@@ -7,7 +7,7 @@
 //
 
 enum BookEndpoint {
-  case search(keywords: [String])
+    case search(keyword: String, page: Int)
 }
 
 extension BookEndpoint: Endpoint {
@@ -28,8 +28,9 @@ extension BookEndpoint: Endpoint {
   
   var headers: [String: String] {
     switch self {
-    case .search(let keywords):
-      return ["title": keywords.joined(separator: "+")]
+    case .search(let keyword, let page):
+        return ["title": keyword.replacingOccurrences(of: " ", with: "+"),
+                "page": String(page)]
     }
   }
   
