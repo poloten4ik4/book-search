@@ -10,6 +10,7 @@ import Foundation
 
 final class BookService: Service {
     let realmDataProvider = DataProvider()
+    let translator = BookInfoTranslator()
     let apiClient = NetworkClientImp()
     
     func search(for searchString: String, page: Int, completion: @escaping (Result<BookSearchResult, ApiError>) -> Void)  {
@@ -17,16 +18,14 @@ final class BookService: Service {
         apiClient.requestObject(endpoint: searchEndpoint) { (response: Result<BookSearchResult, ApiError>) in
             completion(response)
             guard let bookSearchResult = try? response.get() else { return }
-            persist(books: bookSearchResult.docs)
+            self.addToWishList(bookSearchResult.docs.first!)
         }
     }
     
-    
-    private func persist(books: [BookInfo]) {
-        realmDataProvider.add(books, update: true)
-        
-        
-        print(realmDataProvider.objects(BookInfo))
+    func addToWishList(_ book: BookInfo) {
+        let persistableBook = translator.translate(book)
+        realmDataProvider.add(persistableBook, update: true)
+        print(realmDataProvider.objects(BookInfoPersistable.self))
     }
 //    
 //    func obtainWishList() -> [Book] {

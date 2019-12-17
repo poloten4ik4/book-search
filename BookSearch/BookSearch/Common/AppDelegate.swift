@@ -24,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appCoordinator = AppCoordinator(window: window!)
         appCoordinator?.start()
         
+        // Realm initialization
+        
+        DataProvider().configureRealm()
         return true
     }
 }

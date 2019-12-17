@@ -30,6 +30,9 @@
 		BDCD698423A91485003E7C77 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD698123A91485003E7C77 /* NetworkClient.swift */; };
 		BDCD698523A91485003E7C77 /* NetworkClientImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD698223A91485003E7C77 /* NetworkClientImp.swift */; };
 		BDCD698723A91B2B003E7C77 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD698623A91B2B003E7C77 /* SearchViewModel.swift */; };
+		BDCD698A23A95C9A003E7C77 /* BookInfoTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD698923A95C9A003E7C77 /* BookInfoTranslator.swift */; };
+		BDCD698D23A95CFA003E7C77 /* BookInfoPersistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD698C23A95CFA003E7C77 /* BookInfoPersistable.swift */; };
+		BDCD698F23A9629C003E7C77 /* Realm+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD698E23A9629C003E7C77 /* Realm+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +62,9 @@
 		BDCD698123A91485003E7C77 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		BDCD698223A91485003E7C77 /* NetworkClientImp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClientImp.swift; sourceTree = "<group>"; };
 		BDCD698623A91B2B003E7C77 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		BDCD698923A95C9A003E7C77 /* BookInfoTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookInfoTranslator.swift; sourceTree = "<group>"; };
+		BDCD698C23A95CFA003E7C77 /* BookInfoPersistable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookInfoPersistable.swift; sourceTree = "<group>"; };
+		BDCD698E23A9629C003E7C77 /* Realm+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Helpers.swift"; sourceTree = "<group>"; };
 		CF0178227480D10079771F8A /* Pods-BookSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookSearch.debug.xcconfig"; path = "Target Support Files/Pods-BookSearch/Pods-BookSearch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,6 +139,7 @@
 		BD0532B123A8E6D9009ECB87 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BDCD697623A91477003E7C77 /* BookInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -180,7 +187,10 @@
 		BD0532BF23A8ECD9009ECB87 /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				BDCD698B23A95CED003E7C77 /* RealmObjects */,
+				BDCD698823A95C8C003E7C77 /* Translator */,
 				BDCD696C23A90EC2003E7C77 /* DataProvider.swift */,
+				BDCD698E23A9629C003E7C77 /* Realm+Helpers.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -323,7 +333,6 @@
 			isa = PBXGroup;
 			children = (
 				BDCD697323A91477003E7C77 /* ApiClient */,
-				BDCD697523A91477003E7C77 /* Models */,
 				BDCD697723A91477003E7C77 /* Endpoint */,
 			);
 			path = API;
@@ -335,14 +344,6 @@
 				BDCD697423A91477003E7C77 /* ApiClient.swift */,
 			);
 			path = ApiClient;
-			sourceTree = "<group>";
-		};
-		BDCD697523A91477003E7C77 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				BDCD697623A91477003E7C77 /* BookInfo.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		BDCD697723A91477003E7C77 /* Endpoint */ = {
@@ -371,6 +372,22 @@
 			);
 			name = Client;
 			path = ../../../../../Downloads/Archive/Network/Client;
+			sourceTree = "<group>";
+		};
+		BDCD698823A95C8C003E7C77 /* Translator */ = {
+			isa = PBXGroup;
+			children = (
+				BDCD698923A95C9A003E7C77 /* BookInfoTranslator.swift */,
+			);
+			path = Translator;
+			sourceTree = "<group>";
+		};
+		BDCD698B23A95CED003E7C77 /* RealmObjects */ = {
+			isa = PBXGroup;
+			children = (
+				BDCD698C23A95CFA003E7C77 /* BookInfoPersistable.swift */,
+			);
+			path = RealmObjects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -490,10 +507,12 @@
 				BDCD696023A8FE7B003E7C77 /* RootCoordinator.swift in Sources */,
 				BDCD696B23A90602003E7C77 /* Constants.swift in Sources */,
 				BDCD696223A8FFC8003E7C77 /* SearchViewController.swift in Sources */,
+				BDCD698D23A95CFA003E7C77 /* BookInfoPersistable.swift in Sources */,
 				BDCD695C23A8FD24003E7C77 /* Coordinator.swift in Sources */,
 				BDCD697B23A91477003E7C77 /* BookInfo.swift in Sources */,
 				BDCD698423A91485003E7C77 /* NetworkClient.swift in Sources */,
 				BDCD698723A91B2B003E7C77 /* SearchViewModel.swift in Sources */,
+				BDCD698A23A95C9A003E7C77 /* BookInfoTranslator.swift in Sources */,
 				BDCD696623A90018003E7C77 /* WishListCoordinator.swift in Sources */,
 				BDCD697C23A91477003E7C77 /* BookEndpoint.swift in Sources */,
 				BDCD697D23A91477003E7C77 /* ApiEndpoint.swift in Sources */,
@@ -501,6 +520,7 @@
 				BDCD696D23A90EC2003E7C77 /* DataProvider.swift in Sources */,
 				BD05329D23A8E6BF009ECB87 /* AppDelegate.swift in Sources */,
 				BDCD697A23A91477003E7C77 /* ApiClient.swift in Sources */,
+				BDCD698F23A9629C003E7C77 /* Realm+Helpers.swift in Sources */,
 				BDCD696823A90022003E7C77 /* SearchCoordinator.swift in Sources */,
 				BDCD696423A8FFF4003E7C77 /* WishListViewController.swift in Sources */,
 				BDCD698523A91485003E7C77 /* NetworkClientImp.swift in Sources */,

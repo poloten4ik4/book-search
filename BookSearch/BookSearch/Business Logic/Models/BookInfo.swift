@@ -7,20 +7,21 @@
 //
 
 struct BookInfo {
-  let title: String
-  let author: [String]?
+    let title: String
+    let authors: [String]?
+    let key: String?
 }
 
 extension BookInfo: Decodable {
-
-  enum CodingKeys: String, CodingKey {
-    case title = "title"
-    case author = "author_name"
-  }
+    enum CodingKeys: String, CodingKey {
+        case title = "title"
+        case authors = "author_name"
+        case key = "key"
+    }
 }
 
 struct BookSearchResult {
-  let docs: [BookInfo]
+    let docs: [BookInfo]
 }
 
 extension BookSearchResult: Decodable {}
