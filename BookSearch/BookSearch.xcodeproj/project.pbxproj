@@ -21,6 +21,14 @@
 		BDCD696623A90018003E7C77 /* WishListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD696523A90018003E7C77 /* WishListCoordinator.swift */; };
 		BDCD696823A90022003E7C77 /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD696723A90022003E7C77 /* SearchCoordinator.swift */; };
 		BDCD696B23A90602003E7C77 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD696A23A90602003E7C77 /* Constants.swift */; };
+		BDCD696D23A90EC2003E7C77 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD696C23A90EC2003E7C77 /* DataProvider.swift */; };
+		BDCD697A23A91477003E7C77 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD697423A91477003E7C77 /* ApiClient.swift */; };
+		BDCD697B23A91477003E7C77 /* BookInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD697623A91477003E7C77 /* BookInfo.swift */; };
+		BDCD697C23A91477003E7C77 /* BookEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD697823A91477003E7C77 /* BookEndpoint.swift */; };
+		BDCD697D23A91477003E7C77 /* ApiEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD697923A91477003E7C77 /* ApiEndpoint.swift */; };
+		BDCD698323A91485003E7C77 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD697F23A91485003E7C77 /* Endpoint.swift */; };
+		BDCD698423A91485003E7C77 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD698123A91485003E7C77 /* NetworkClient.swift */; };
+		BDCD698523A91485003E7C77 /* NetworkClientImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD698223A91485003E7C77 /* NetworkClientImp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +49,14 @@
 		BDCD696523A90018003E7C77 /* WishListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListCoordinator.swift; sourceTree = "<group>"; };
 		BDCD696723A90022003E7C77 /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		BDCD696A23A90602003E7C77 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BDCD696C23A90EC2003E7C77 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		BDCD697423A91477003E7C77 /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		BDCD697623A91477003E7C77 /* BookInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookInfo.swift; sourceTree = "<group>"; };
+		BDCD697823A91477003E7C77 /* BookEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookEndpoint.swift; sourceTree = "<group>"; };
+		BDCD697923A91477003E7C77 /* ApiEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiEndpoint.swift; sourceTree = "<group>"; };
+		BDCD697F23A91485003E7C77 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		BDCD698123A91485003E7C77 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		BDCD698223A91485003E7C77 /* NetworkClientImp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClientImp.swift; sourceTree = "<group>"; };
 		CF0178227480D10079771F8A /* Pods-BookSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookSearch.debug.xcconfig"; path = "Target Support Files/Pods-BookSearch/Pods-BookSearch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -162,6 +178,7 @@
 		BD0532BF23A8ECD9009ECB87 /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				BDCD696C23A90EC2003E7C77 /* DataProvider.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -169,6 +186,9 @@
 		BD0532C023A8ECDF009ECB87 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				BDCD698023A91485003E7C77 /* Client */,
+				BDCD697E23A91485003E7C77 /* Endpoint */,
+				BDCD697223A91477003E7C77 /* API */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -320,6 +340,60 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		BDCD697223A91477003E7C77 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				BDCD697323A91477003E7C77 /* ApiClient */,
+				BDCD697523A91477003E7C77 /* Models */,
+				BDCD697723A91477003E7C77 /* Endpoint */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		BDCD697323A91477003E7C77 /* ApiClient */ = {
+			isa = PBXGroup;
+			children = (
+				BDCD697423A91477003E7C77 /* ApiClient.swift */,
+			);
+			path = ApiClient;
+			sourceTree = "<group>";
+		};
+		BDCD697523A91477003E7C77 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BDCD697623A91477003E7C77 /* BookInfo.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BDCD697723A91477003E7C77 /* Endpoint */ = {
+			isa = PBXGroup;
+			children = (
+				BDCD697823A91477003E7C77 /* BookEndpoint.swift */,
+				BDCD697923A91477003E7C77 /* ApiEndpoint.swift */,
+			);
+			path = Endpoint;
+			sourceTree = "<group>";
+		};
+		BDCD697E23A91485003E7C77 /* Endpoint */ = {
+			isa = PBXGroup;
+			children = (
+				BDCD697F23A91485003E7C77 /* Endpoint.swift */,
+			);
+			name = Endpoint;
+			path = ../../../../../Downloads/Archive/Network/Endpoint;
+			sourceTree = "<group>";
+		};
+		BDCD698023A91485003E7C77 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				BDCD698123A91485003E7C77 /* NetworkClient.swift */,
+				BDCD698223A91485003E7C77 /* NetworkClientImp.swift */,
+			);
+			name = Client;
+			path = ../../../../../Downloads/Archive/Network/Client;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -438,12 +512,20 @@
 				BDCD696B23A90602003E7C77 /* Constants.swift in Sources */,
 				BDCD696223A8FFC8003E7C77 /* SearchViewController.swift in Sources */,
 				BDCD695C23A8FD24003E7C77 /* Coordinator.swift in Sources */,
+				BDCD697B23A91477003E7C77 /* BookInfo.swift in Sources */,
+				BDCD698423A91485003E7C77 /* NetworkClient.swift in Sources */,
 				BDCD696623A90018003E7C77 /* WishListCoordinator.swift in Sources */,
+				BDCD697C23A91477003E7C77 /* BookEndpoint.swift in Sources */,
+				BDCD697D23A91477003E7C77 /* ApiEndpoint.swift in Sources */,
 				BD0532C423A8EF46009ECB87 /* BookService.swift in Sources */,
+				BDCD696D23A90EC2003E7C77 /* DataProvider.swift in Sources */,
 				BD05329D23A8E6BF009ECB87 /* AppDelegate.swift in Sources */,
+				BDCD697A23A91477003E7C77 /* ApiClient.swift in Sources */,
 				BDCD696823A90022003E7C77 /* SearchCoordinator.swift in Sources */,
 				BDCD696423A8FFF4003E7C77 /* WishListViewController.swift in Sources */,
+				BDCD698523A91485003E7C77 /* NetworkClientImp.swift in Sources */,
 				BDCD695E23A8FD7F003E7C77 /* AppCoodrinator.swift in Sources */,
+				BDCD698323A91485003E7C77 /* Endpoint.swift in Sources */,
 				BD0532C623A8EF5B009ECB87 /* ServiceProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

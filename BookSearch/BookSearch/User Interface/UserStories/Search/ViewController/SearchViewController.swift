@@ -9,5 +9,13 @@
 import UIKit
 
 class SearchViewController: UIViewController {
-
+    let apiClient: NetworkClient = NetworkClientImp()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        apiClient.requestObject(endpoint: BookEndpoint.search(keywords: ["Lord"])) { (response: Result<BookSearchResult, ApiError>) in
+          print(response)
+        }
+    }
 }
