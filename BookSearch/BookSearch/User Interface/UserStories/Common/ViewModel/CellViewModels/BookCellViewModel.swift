@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct BookCellViewModel: CellViewModel {
+struct BookCellViewModel {
     init(with bookInfo: BookInfo) {
         
     }

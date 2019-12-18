@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BookCollectionViewCell: UICollectionViewCell, ConfigurableCell {
+class BookCollectionViewCell: UICollectionViewCell {
     func configure(_ viewModel: BookCellViewModel) {
         print(viewModel)
     }

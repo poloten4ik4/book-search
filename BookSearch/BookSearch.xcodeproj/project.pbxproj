@@ -36,7 +36,6 @@
 		BDCD699B23AA37AD003E7C77 /* SearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD699A23AA37AD003E7C77 /* SearchDataSource.swift */; };
 		BDCD699E23AA3910003E7C77 /* BookCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD699D23AA3910003E7C77 /* BookCellViewModel.swift */; };
 		BDCD69A123AA3C1B003E7C77 /* BookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD69A023AA3C1B003E7C77 /* BookCollectionViewCell.swift */; };
-		BDCD69A523AA3C7C003E7C77 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD69A423AA3C7C003E7C77 /* CellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,7 +71,6 @@
 		BDCD699A23AA37AD003E7C77 /* SearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataSource.swift; sourceTree = "<group>"; };
 		BDCD699D23AA3910003E7C77 /* BookCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCellViewModel.swift; sourceTree = "<group>"; };
 		BDCD69A023AA3C1B003E7C77 /* BookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionViewCell.swift; sourceTree = "<group>"; };
-		BDCD69A423AA3C7C003E7C77 /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
 		CF0178227480D10079771F8A /* Pods-BookSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookSearch.debug.xcconfig"; path = "Target Support Files/Pods-BookSearch/Pods-BookSearch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -437,7 +435,6 @@
 		BDCD69A323AA3C49003E7C77 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				BDCD69A423AA3C7C003E7C77 /* CellViewModel.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -561,7 +558,6 @@
 				BDCD696023A8FE7B003E7C77 /* RootCoordinator.swift in Sources */,
 				BDCD696B23A90602003E7C77 /* Constants.swift in Sources */,
 				BDCD696223A8FFC8003E7C77 /* SearchViewController.swift in Sources */,
-				BDCD69A523AA3C7C003E7C77 /* CellViewModel.swift in Sources */,
 				BDCD698D23A95CFA003E7C77 /* BookInfoPersistable.swift in Sources */,
 				BDCD695C23A8FD24003E7C77 /* Coordinator.swift in Sources */,
 				BDCD697B23A91477003E7C77 /* BookInfo.swift in Sources */,
