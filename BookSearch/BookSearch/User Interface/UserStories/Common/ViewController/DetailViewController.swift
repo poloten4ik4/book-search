@@ -13,11 +13,15 @@ class BookDetailViewController: UIViewController {
     var viewModel: BookDetailViewModel?
     
     // MARK: - UI elements
+    
     private let imageView = UIImageView()
-    private let labelsContainer = UIView()
+    private let labelsStackView = UIStackView()
     private let authorLabel = UILabel()
     private let titleLabel = UILabel()
     private let firstPublishYearLabel = UILabel()
+    
+    
+    // MARK: - Lyfecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +29,7 @@ class BookDetailViewController: UIViewController {
         configureView()
     }
     
+    // MARK: - Layout
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let labelSpacing: CGFloat = 20.0
@@ -36,23 +41,18 @@ class BookDetailViewController: UIViewController {
         let labelsContainerHeight = view.bounds.height - containerY - tabBarHeight
         
         imageView.frame = CGRect(x: 0, y: topbarHeight, width: view.bounds.width, height: imageViewHeight)
-        
-        labelsContainer.frame = CGRect(x: labelSpacing, y: containerY, width: labelsContainerWidth, height: labelsContainerHeight)
-        titleLabel.frame = CGRect(x: 0, y: labelSpacing, width: labelsContainerWidth, height: titleLabel.intrinsicContentSize.height)
-        
-        let authorLabelY = titleLabel.intrinsicContentSize.height + labelSpacing * 2
-        authorLabel.frame = CGRect(x: 0, y: authorLabelY, width: labelsContainerWidth, height: authorLabel.intrinsicContentSize.height)
-        
-        let firstPublishYearLabelY = titleLabel.intrinsicContentSize.height + authorLabel.intrinsicContentSize.height + labelSpacing * 3
-        firstPublishYearLabel.frame = CGRect(x: 0, y: firstPublishYearLabelY, width: labelsContainerWidth,
-                                             height: firstPublishYearLabel.intrinsicContentSize.height)
+        labelsStackView.frame = CGRect(x: labelSpacing, y: containerY, width: labelsContainerWidth, height: labelsContainerHeight)
     }
+    
+    // MARK: - Configuration
     
     private func configureView() {
         guard let viewModel = self.viewModel else { return }
         setupImageView()
+        setupStackView()
         setupLabels()
         
+        // Setting the data from view model to UI
         imageView.kf.setImage(with: viewModel.imageURL, placeholder: UIImage(named: viewModel.imagePlaceholderName))
         
         titleLabel.text = viewModel.title
@@ -60,23 +60,33 @@ class BookDetailViewController: UIViewController {
         firstPublishYearLabel.text = viewModel.yearOfPublish
     }
     
+    // MARK: - Setup
+    
     private func setupImageView() {
         view.addSubview(imageView)
         imageView.backgroundColor = .gray
         imageView.contentMode = .scaleAspectFit
     }
     
+    private func setupStackView() {
+        labelsStackView.axis = .vertical
+    }
+    
     private func setupLabels() {
-        view.addSubview(labelsContainer)
+        view.addSubview(labelsStackView)
         
-        labelsContainer.addSubview(titleLabel)
-        labelsContainer.addSubview(authorLabel)
-        labelsContainer.addSubview(firstPublishYearLabel)
+        labelsStackView.addArrangedSubview(titleLabel)
+        labelsStackView.addArrangedSubview(authorLabel)
+        labelsStackView.addArrangedSubview(firstPublishYearLabel)
+        
+        labelsStackView.alignment = .top
         
         setupTitleLabel()
         setupAuthorLabel()
         setupPublishYearLabel()
     }
+    
+    // MARK: - Labels Setup
     
     private func setupTitleLabel() {
         titleLabel.font = .boldSystemFont(ofSize: 15.0)
