@@ -9,13 +9,25 @@
 import Foundation
 
 class SearchViewModel {
-    let service = BookService()
-    var books: [BookInfo] = []
-    let dataSource = SearchDataSource()
-    var page = 1
-    var lastSearchedString: String = ""
+    
+    private let service = BookService()
+    private var books: [BookInfo] = []
+    private let dataSource = SearchDataSource()
+    private var page = 1
+    private var lastSearchedString: String = ""
+    
+    // MARK: - Output
+    
+    var onOpenDetail: ((BookInfo) -> ())?
+    
+    // MARK: - Init
+    
+    init() {
+        self.initialSetup()
+    }
     
     // MARK: - Public/Interface
+    
     func search(for searchString: String) {
         if searchString.count > 0 {
             // We need to check if we need to load the next page
@@ -35,10 +47,10 @@ class SearchViewModel {
                 }
             }
         }
-
     }
     
     // MARK: - Private methods
+    
     private func processResult(_ bookSearchResult: BookSearchResult) {
         // It's initial loading
         // We did not have any piece of data related to the search before
@@ -59,7 +71,8 @@ class SearchViewModel {
             
             switch tapInfo.interactionType {
             case .main:
-                print("not handled yet")
+                let book = self.books[tapInfo.cellIndex]
+                self.onOpenDetail?(book)
             case .wishList(let operationType):
                 self.processWishListAction(elementIndex: tapInfo.cellIndex, type: operationType)
             }
