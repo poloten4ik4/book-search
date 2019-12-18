@@ -15,10 +15,16 @@ enum BookCellInteractionType {
 
 class BookCollectionViewCell: UICollectionViewCell {
     
+    var onClick: ((BookCellInteractionType) -> ())?
     
     func configure(_ viewModel: BookCellViewModel) {
         print(viewModel)
     }
     
     
+    // TODO: Add actions
+    func addToWishList() {
+        onClick?(.wishList)
+    }
+
 }

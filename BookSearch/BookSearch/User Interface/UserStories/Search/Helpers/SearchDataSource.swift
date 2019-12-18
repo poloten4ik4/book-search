@@ -38,6 +38,7 @@ class SearchDataSource: NSObject, UICollectionViewDataSource {
 //            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(LoadingCell.self), for: indexPath) as! LoadingCell
 //        } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(BookCollectionViewCell.self), for: indexPath) as! BookCollectionViewCell
+        
             cell.configure(viewModels[indexPath.row])
 //        }
         
