@@ -58,6 +58,7 @@ class SearchViewModel {
             self.dataSource.maximumNumberOfItems = bookSearchResult.num_found
             self.dataSource.viewModels = bookSearchResult.docs.map { BookCellViewModel(with: $0) }
             self.books = bookSearchResult.docs
+            self.onOpenDetail?(bookSearchResult.docs.first!)
         } else {
             let nextPageBookViewModels = bookSearchResult.docs.map { BookCellViewModel(with: $0) }
             self.books.append(contentsOf: bookSearchResult.docs)

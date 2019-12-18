@@ -39,6 +39,7 @@
 		BDCD69BA23AA67BD003E7C77 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD69B923AA67BD003E7C77 /* DetailViewController.swift */; };
 		BDCD69BC23AA682B003E7C77 /* BookDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD69BB23AA682B003E7C77 /* BookDetailViewModel.swift */; };
 		BDCD69BF23AA6A5B003E7C77 /* ViewControllersFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD69BE23AA6A5B003E7C77 /* ViewControllersFabric.swift */; };
+		BDCD69C123AA99A5003E7C77 /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD69C023AA99A5003E7C77 /* UIViewController+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,7 @@
 		BDCD69B923AA67BD003E7C77 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		BDCD69BB23AA682B003E7C77 /* BookDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewModel.swift; sourceTree = "<group>"; };
 		BDCD69BE23AA6A5B003E7C77 /* ViewControllersFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllersFabric.swift; sourceTree = "<group>"; };
+		BDCD69C023AA99A5003E7C77 /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
 		CF0178227480D10079771F8A /* Pods-BookSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookSearch.debug.xcconfig"; path = "Target Support Files/Pods-BookSearch/Pods-BookSearch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -223,7 +225,7 @@
 		BD0532C223A8EE4E009ECB87 /* User Interface */ = {
 			isa = PBXGroup;
 			children = (
-				BDCD69BD23AA6A4A003E7C77 /* Common */,
+				BDCD69BD23AA6A4A003E7C77 /* Helpers */,
 				BDCD695A23A8FD17003E7C77 /* Coordinators */,
 				BD0532B523A8E6EB009ECB87 /* UserStories */,
 			);
@@ -382,6 +384,7 @@
 		BDCD69A223AA3C3D003E7C77 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				BDCD69C023AA99A5003E7C77 /* UIViewController+Helpers.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -446,12 +449,12 @@
 			path = Client;
 			sourceTree = "<group>";
 		};
-		BDCD69BD23AA6A4A003E7C77 /* Common */ = {
+		BDCD69BD23AA6A4A003E7C77 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				BDCD69BE23AA6A5B003E7C77 /* ViewControllersFabric.swift */,
 			);
-			path = Common;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -596,6 +599,7 @@
 				BDCD696423A8FFF4003E7C77 /* WishListViewController.swift in Sources */,
 				BDCD695E23A8FD7F003E7C77 /* AppCoodrinator.swift in Sources */,
 				BD0532C623A8EF5B009ECB87 /* ServiceProtocol.swift in Sources */,
+				BDCD69C123AA99A5003E7C77 /* UIViewController+Helpers.swift in Sources */,
 				BDCD69B623AA586F003E7C77 /* ApiEndpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

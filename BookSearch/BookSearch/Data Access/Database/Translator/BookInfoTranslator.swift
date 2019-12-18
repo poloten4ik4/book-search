@@ -41,7 +41,8 @@ class BookInfoTranslator {
             isbn = Array(isbnList)
         }
         
-        let bookInfo = BookInfo(title: bookInfo.title, authors: authors, key: bookInfo.key, isbn: isbn)
+        let bookInfo = BookInfo(title: bookInfo.title, authors: authors, key: bookInfo.key,
+                                isbn: isbn, firstYearOfPulish: bookInfo.firstYearOfPulish)
         
         
         return bookInfo

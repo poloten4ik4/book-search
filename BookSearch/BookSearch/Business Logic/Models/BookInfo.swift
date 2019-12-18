@@ -11,6 +11,7 @@ struct BookInfo {
     let authors: [String]?
     let key: String?
     let isbn: [String]?
+    let firstYearOfPulish: Int?
 }
 
 extension BookInfo: Decodable {
@@ -19,6 +20,7 @@ extension BookInfo: Decodable {
         case authors = "author_name"
         case key = "key"
         case isbn = "isbn"
+        case firstYearOfPulish = "first_publish_year"
     }
 }
 
