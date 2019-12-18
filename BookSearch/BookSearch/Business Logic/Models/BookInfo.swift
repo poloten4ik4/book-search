@@ -21,6 +21,8 @@ extension BookInfo: Decodable {
 }
 
 struct BookSearchResult {
+    let start: Int 
+    let num_found: Int
     let docs: [BookInfo]
 }
 

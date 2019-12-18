@@ -33,6 +33,10 @@
 		BDCD698A23A95C9A003E7C77 /* BookInfoTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD698923A95C9A003E7C77 /* BookInfoTranslator.swift */; };
 		BDCD698D23A95CFA003E7C77 /* BookInfoPersistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD698C23A95CFA003E7C77 /* BookInfoPersistable.swift */; };
 		BDCD698F23A9629C003E7C77 /* Realm+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD698E23A9629C003E7C77 /* Realm+Helpers.swift */; };
+		BDCD699B23AA37AD003E7C77 /* SearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD699A23AA37AD003E7C77 /* SearchDataSource.swift */; };
+		BDCD699E23AA3910003E7C77 /* BookCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD699D23AA3910003E7C77 /* BookCellViewModel.swift */; };
+		BDCD69A123AA3C1B003E7C77 /* BookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD69A023AA3C1B003E7C77 /* BookCollectionViewCell.swift */; };
+		BDCD69A523AA3C7C003E7C77 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD69A423AA3C7C003E7C77 /* CellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +69,10 @@
 		BDCD698923A95C9A003E7C77 /* BookInfoTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookInfoTranslator.swift; sourceTree = "<group>"; };
 		BDCD698C23A95CFA003E7C77 /* BookInfoPersistable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookInfoPersistable.swift; sourceTree = "<group>"; };
 		BDCD698E23A9629C003E7C77 /* Realm+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Helpers.swift"; sourceTree = "<group>"; };
+		BDCD699A23AA37AD003E7C77 /* SearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataSource.swift; sourceTree = "<group>"; };
+		BDCD699D23AA3910003E7C77 /* BookCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCellViewModel.swift; sourceTree = "<group>"; };
+		BDCD69A023AA3C1B003E7C77 /* BookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionViewCell.swift; sourceTree = "<group>"; };
+		BDCD69A423AA3C7C003E7C77 /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
 		CF0178227480D10079771F8A /* Pods-BookSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookSearch.debug.xcconfig"; path = "Target Support Files/Pods-BookSearch/Pods-BookSearch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,6 +155,7 @@
 		BD0532B223A8E6DD009ECB87 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				BDCD699C23AA38E8003E7C77 /* CellViewModels */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -154,6 +163,7 @@
 		BD0532B323A8E6E3009ECB87 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BDCD699F23AA3C0C003E7C77 /* Cells */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -226,6 +236,7 @@
 		BD0532C723A8F16A009ECB87 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				BDCD699923AA3796003E7C77 /* Helpers */,
 				BD0532CC23A8F1E5009ECB87 /* View */,
 				BD0532CA23A8F1D9009ECB87 /* ViewController */,
 				BD0532CB23A8F1E0009ECB87 /* ViewModel */,
@@ -323,6 +334,8 @@
 		BDCD696923A905F8003E7C77 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				BDCD69A323AA3C49003E7C77 /* Protocols */,
+				BDCD69A223AA3C3D003E7C77 /* Extensions */,
 				BD05329C23A8E6BF009ECB87 /* AppDelegate.swift */,
 				BDCD696A23A90602003E7C77 /* Constants.swift */,
 			);
@@ -388,6 +401,45 @@
 				BDCD698C23A95CFA003E7C77 /* BookInfoPersistable.swift */,
 			);
 			path = RealmObjects;
+			sourceTree = "<group>";
+		};
+		BDCD699923AA3796003E7C77 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				BDCD699A23AA37AD003E7C77 /* SearchDataSource.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		BDCD699C23AA38E8003E7C77 /* CellViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				BDCD699D23AA3910003E7C77 /* BookCellViewModel.swift */,
+			);
+			path = CellViewModels;
+			sourceTree = "<group>";
+		};
+		BDCD699F23AA3C0C003E7C77 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				BDCD69A023AA3C1B003E7C77 /* BookCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		BDCD69A223AA3C3D003E7C77 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BDCD69A323AA3C49003E7C77 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				BDCD69A423AA3C7C003E7C77 /* CellViewModel.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -504,9 +556,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDCD699E23AA3910003E7C77 /* BookCellViewModel.swift in Sources */,
+				BDCD69A123AA3C1B003E7C77 /* BookCollectionViewCell.swift in Sources */,
 				BDCD696023A8FE7B003E7C77 /* RootCoordinator.swift in Sources */,
 				BDCD696B23A90602003E7C77 /* Constants.swift in Sources */,
 				BDCD696223A8FFC8003E7C77 /* SearchViewController.swift in Sources */,
+				BDCD69A523AA3C7C003E7C77 /* CellViewModel.swift in Sources */,
 				BDCD698D23A95CFA003E7C77 /* BookInfoPersistable.swift in Sources */,
 				BDCD695C23A8FD24003E7C77 /* Coordinator.swift in Sources */,
 				BDCD697B23A91477003E7C77 /* BookInfo.swift in Sources */,
@@ -522,6 +577,7 @@
 				BDCD697A23A91477003E7C77 /* ApiClient.swift in Sources */,
 				BDCD698F23A9629C003E7C77 /* Realm+Helpers.swift in Sources */,
 				BDCD696823A90022003E7C77 /* SearchCoordinator.swift in Sources */,
+				BDCD699B23AA37AD003E7C77 /* SearchDataSource.swift in Sources */,
 				BDCD696423A8FFF4003E7C77 /* WishListViewController.swift in Sources */,
 				BDCD698523A91485003E7C77 /* NetworkClientImp.swift in Sources */,
 				BDCD695E23A8FD7F003E7C77 /* AppCoodrinator.swift in Sources */,
