@@ -35,13 +35,13 @@ class BookDetailViewController: UIViewController {
         let labelSpacing: CGFloat = 20.0
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 49.0
         let imageViewHeight = view.bounds.width
-        let containerY = topbarHeight + imageViewHeight
+        let stackViewY = topbarHeight + imageViewHeight + labelSpacing
         
         let labelsContainerWidth = view.bounds.width - 2 * labelSpacing
-        let labelsContainerHeight = view.bounds.height - containerY - tabBarHeight
+        let labelsContainerHeight = view.bounds.height - stackViewY - tabBarHeight
         
         imageView.frame = CGRect(x: 0, y: topbarHeight, width: view.bounds.width, height: imageViewHeight)
-        labelsStackView.frame = CGRect(x: labelSpacing, y: containerY, width: labelsContainerWidth, height: labelsContainerHeight)
+        labelsStackView.frame = CGRect(x: labelSpacing, y: stackViewY, width: labelsContainerWidth, height: labelsContainerHeight)
     }
     
     // MARK: - Configuration
@@ -70,6 +70,8 @@ class BookDetailViewController: UIViewController {
     
     private func setupStackView() {
         labelsStackView.axis = .vertical
+        labelsStackView.spacing = 20
+        labelsStackView.alignment = .top
     }
     
     private func setupLabels() {
@@ -101,5 +103,6 @@ class BookDetailViewController: UIViewController {
     private func setupPublishYearLabel() {
         firstPublishYearLabel.font = .systemFont(ofSize: 13.0)
         firstPublishYearLabel.numberOfLines = 1
+        firstPublishYearLabel.sizeToFit()
     }
 }
