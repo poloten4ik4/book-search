@@ -25,7 +25,6 @@ final class BookService: Service, BookServiceProtocol {
         apiClient.requestObject(endpoint: searchEndpoint) { (response: Result<BookSearchResult, ApiError>) in
             completion(response)
             guard let bookSearchResult = try? response.get() else { return }
-            self.addToWishList(bookSearchResult.docs.first!)
         }
     }
     
