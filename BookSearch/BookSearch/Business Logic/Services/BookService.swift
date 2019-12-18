@@ -23,7 +23,9 @@ final class BookService: Service, BookServiceProtocol {
     func search(for searchString: String, page: Int, completion: @escaping (Result<BookSearchResult, ApiError>) -> Void)  {
         let searchEndpoint = BookEndpoint.search(keyword: searchString, page: page)
         apiClient.requestObject(endpoint: searchEndpoint) { (response: Result<BookSearchResult, ApiError>) in
-            completion(response)
+            DispatchQueue.main.async {
+                completion(response)
+            }
         }
     }
     

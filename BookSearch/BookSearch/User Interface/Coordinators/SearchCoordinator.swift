@@ -13,11 +13,24 @@ class SearchCoordinator: Coordinator {
     
     var navigationController: UINavigationController
     
-    func start() {
-        print("SearchCoordinator started flow")
-    }
-    
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+    }
+    
+    func start() {
+        guard let searchViewController = navigationController.viewControllers.first as? SearchViewController else { return }
+        
+        searchViewController.viewModel.onOpenDetail = { bookInfo in
+            self.openDetail(bookInfo)
+        }
+    }
+
+    private func openDetail(_ bookInfo: BookInfo) {
+        // TODO: Provide year of publish
+        let bookDetailViewModel = BookDetailViewModel.init(title: bookInfo.title, yearOfPublish: "1566")
+        let bookDetailViewController = BookDetailViewController()
+        bookDetailViewController.viewModel = bookDetailViewModel
+        bookDetailViewController.title = "Book Details"
+        navigationController.pushViewController(bookDetailViewController, animated: true)
     }
 }

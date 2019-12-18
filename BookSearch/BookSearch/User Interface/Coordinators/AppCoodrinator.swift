@@ -34,6 +34,8 @@ class AppCoordinator: RootCoordinator {
         self.childCoordinators = [searchCoordinator, wishListCoordinator]
         
         tabBarController?.setViewControllers(childCoordinators.map{ $0.navigationController }, animated: false)
+        
+        childCoordinators.forEach({ $0.start() })
     }
 }
 
