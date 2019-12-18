@@ -24,7 +24,6 @@ final class BookService: Service, BookServiceProtocol {
         let searchEndpoint = BookEndpoint.search(keyword: searchString, page: page)
         apiClient.requestObject(endpoint: searchEndpoint) { (response: Result<BookSearchResult, ApiError>) in
             completion(response)
-            guard let bookSearchResult = try? response.get() else { return }
         }
     }
     
