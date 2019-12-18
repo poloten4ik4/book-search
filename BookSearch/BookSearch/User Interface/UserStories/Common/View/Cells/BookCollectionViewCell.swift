@@ -8,7 +8,14 @@
 
 import UIKit
 
+enum BookCellInteractionType {
+    case wishList
+    case main
+}
+
 class BookCollectionViewCell: UICollectionViewCell {
+    
+    
     func configure(_ viewModel: BookCellViewModel) {
         print(viewModel)
     }
