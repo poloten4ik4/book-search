@@ -8,14 +8,20 @@
 
 import UIKit
 
+
+enum WishListOperationType {
+    case add
+    case remove
+}
+
 enum BookCellInteractionType {
-    case wishList
+    case wishList(WishListOperationType)
     case main
 }
 
 class BookCollectionViewCell: UICollectionViewCell {
     
-    var onClick: ((BookCellInteractionType) -> ())?
+    var onTap: ((BookCellInteractionType) -> ())?
     
     func configure(_ viewModel: BookCellViewModel) {
         print(viewModel)
@@ -24,7 +30,8 @@ class BookCollectionViewCell: UICollectionViewCell {
     
     // TODO: Add actions
     func addToWishList() {
-        onClick?(.wishList)
+        // Need to take UI's state of button - is selected or not, or keep the view model inside cell
+        onTap?(.wishList(.add))
     }
 
 }

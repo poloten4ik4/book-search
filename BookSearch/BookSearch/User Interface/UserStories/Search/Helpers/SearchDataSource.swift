@@ -8,6 +8,11 @@
 
 import UIKit
 
+struct SearchCellTapInfo {
+    let cellIndex: Int
+    let interactionType: BookCellInteractionType
+}
+
 class SearchDataSource: NSObject, UICollectionViewDataSource {
     
     // MARK: - Input
@@ -17,13 +22,21 @@ class SearchDataSource: NSObject, UICollectionViewDataSource {
     
     // MARK: - Output
     
-    var onCellClick: ((BookCellInteractionType) -> ())?
-    
+    var onCellTap: ((SearchCellTapInfo) -> ())?
     
     // MARK: - Inner properties
     
     private var shouldHaveLoadingCell: Bool {
         return viewModels.count != maximumNumberOfItems
+    }
+    
+    // MARK: - Public methods
+    
+    // Cell view models are DTO's (plain objects and structures)
+    // So in order to update the existance in wishList, need to recreate the model
+    func updateViewModel(at index: Int, bookInfo: BookInfo) {
+        let newModel = BookCellViewModel(with: bookInfo)
+        viewModels[index] = newModel
     }
     
     // MARK: - UICollectionView DataSource
@@ -39,6 +52,14 @@ class SearchDataSource: NSObject, UICollectionViewDataSource {
 //        } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(BookCollectionViewCell.self), for: indexPath) as! BookCollectionViewCell
         
+            // Not sure if we had a retain cycle here, maybe capture list is not mandatory
+            // TODO: check for leak
+            cell.onTap = { [weak self] type in
+                guard let self = self else { return }
+                let tapInfo = SearchCellTapInfo(cellIndex: indexPath.row, interactionType: type)
+                self.onCellTap?(tapInfo)
+            }
+            
             cell.configure(viewModels[indexPath.row])
 //        }
         
