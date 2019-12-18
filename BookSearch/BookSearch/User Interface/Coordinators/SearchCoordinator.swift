@@ -26,7 +26,7 @@ class SearchCoordinator: Coordinator {
     }
 
     private func openDetail(_ bookInfo: BookInfo) {
-        let controller = ViewControllersFabric().createBookDetailViewController(bookInfo)
+        let controller = ViewControllersFabric.createBookDetailViewController(bookInfo)
         navigationController.pushViewController(controller, animated: true)
     }
 }

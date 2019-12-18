@@ -42,22 +42,14 @@ class AppCoordinator: RootCoordinator {
 // MARK: - Child coordinators builder
 extension AppCoordinator {
     func  buildWishListCoordinator() -> WishListCoordinator {
-        let wishListViewController = WishListViewController()
-        let screenTitle = Constants.ScreenTitles.wishList
-        let tabBarImage = UIImage(named: Constants.ImageNames.wishList)
-        wishListViewController.tabBarItem = UITabBarItem(title: screenTitle, image: tabBarImage, tag: 2)
+        let wishListViewController = ViewControllersFabric.createWishListViewController()
         let wishListNavigationController = UINavigationController(rootViewController: wishListViewController)
-        
         return WishListCoordinator(navigationController: wishListNavigationController)
     }
     
     func buildSearchCoordinator() -> SearchCoordinator {
-        let searchViewController = SearchViewController()
-        let screenTitle = Constants.ScreenTitles.search
-        let tabBarImage = UIImage(named: Constants.ImageNames.search)
-        searchViewController.tabBarItem = UITabBarItem(title: screenTitle, image: tabBarImage, tag: 1)
+        let searchViewController = ViewControllersFabric.createSearchViewController()
         let searchNavigationController = UINavigationController(rootViewController: searchViewController)
-        
         return SearchCoordinator(navigationController: searchNavigationController)
     }
 }
