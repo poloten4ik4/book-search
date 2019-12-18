@@ -13,11 +13,16 @@ class WishListCoordinator: Coordinator {
     
     var navigationController: UINavigationController
     
-    func start() {
-        
-    }
-    
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+    }
+    
+    func start() {
+        // TODO: Implement Wish List flow start
+    }
+    
+    private func openDetail(_ bookInfo: BookInfo) {
+        let controller = ViewControllersFabric().createBookDetailViewController(bookInfo)
+        navigationController.pushViewController(controller, animated: true)
     }
 }

@@ -26,11 +26,7 @@ class SearchCoordinator: Coordinator {
     }
 
     private func openDetail(_ bookInfo: BookInfo) {
-        // TODO: Provide year of publish
-        let bookDetailViewModel = BookDetailViewModel.init(title: bookInfo.title, yearOfPublish: "1566")
-        let bookDetailViewController = BookDetailViewController()
-        bookDetailViewController.viewModel = bookDetailViewModel
-        bookDetailViewController.title = "Book Details"
-        navigationController.pushViewController(bookDetailViewController, animated: true)
+        let controller = ViewControllersFabric().createBookDetailViewController(bookInfo)
+        navigationController.pushViewController(controller, animated: true)
     }
 }

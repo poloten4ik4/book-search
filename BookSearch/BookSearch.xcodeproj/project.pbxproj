@@ -38,6 +38,7 @@
 		BDCD69B823AA586F003E7C77 /* NetworkClientImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD69B223AA586F003E7C77 /* NetworkClientImp.swift */; };
 		BDCD69BA23AA67BD003E7C77 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD69B923AA67BD003E7C77 /* DetailViewController.swift */; };
 		BDCD69BC23AA682B003E7C77 /* BookDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD69BB23AA682B003E7C77 /* BookDetailViewModel.swift */; };
+		BDCD69BF23AA6A5B003E7C77 /* ControllersFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD69BE23AA6A5B003E7C77 /* ControllersFabric.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		BDCD69B223AA586F003E7C77 /* NetworkClientImp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClientImp.swift; sourceTree = "<group>"; };
 		BDCD69B923AA67BD003E7C77 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		BDCD69BB23AA682B003E7C77 /* BookDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewModel.swift; sourceTree = "<group>"; };
+		BDCD69BE23AA6A5B003E7C77 /* ControllersFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersFabric.swift; sourceTree = "<group>"; };
 		CF0178227480D10079771F8A /* Pods-BookSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookSearch.debug.xcconfig"; path = "Target Support Files/Pods-BookSearch/Pods-BookSearch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -221,6 +223,7 @@
 		BD0532C223A8EE4E009ECB87 /* User Interface */ = {
 			isa = PBXGroup;
 			children = (
+				BDCD69BD23AA6A4A003E7C77 /* Common */,
 				BDCD695A23A8FD17003E7C77 /* Coordinators */,
 				BD0532B523A8E6EB009ECB87 /* UserStories */,
 			);
@@ -443,6 +446,14 @@
 			path = Client;
 			sourceTree = "<group>";
 		};
+		BDCD69BD23AA6A4A003E7C77 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				BDCD69BE23AA6A5B003E7C77 /* ControllersFabric.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -576,6 +587,7 @@
 				BD0532C423A8EF46009ECB87 /* BookService.swift in Sources */,
 				BDCD696D23A90EC2003E7C77 /* DataProvider.swift in Sources */,
 				BDCD69B523AA586F003E7C77 /* BookEndpoint.swift in Sources */,
+				BDCD69BF23AA6A5B003E7C77 /* ControllersFabric.swift in Sources */,
 				BD05329D23A8E6BF009ECB87 /* AppDelegate.swift in Sources */,
 				BDCD698F23A9629C003E7C77 /* Realm+Helpers.swift in Sources */,
 				BDCD696823A90022003E7C77 /* SearchCoordinator.swift in Sources */,
