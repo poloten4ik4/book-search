@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class SearchViewController: UIViewController {
     
@@ -16,7 +18,9 @@ class SearchViewController: UIViewController {
     }
     
     var viewModel: SearchViewModel!
-
+    
+    private let disposeBag = DisposeBag()
+    
     // MARK: - UI elements
     
     let collectionView: UICollectionView = {
@@ -37,8 +41,6 @@ class SearchViewController: UIViewController {
         
         setupUI()
         setupActions()
-        
-        viewModel.search(for: "New york")
     }
     
     override func viewDidLayoutSubviews() {
@@ -81,7 +83,14 @@ class SearchViewController: UIViewController {
     
     private func setupSearchBar() {
         view.addSubview(searchBar)
-        searchBar.delegate = self
+        searchBar.placeholder = viewModel.searchPlaceholder
+        
+        // NOTE: To save the time, I have added RxCocoa to do the throttling.
+        searchBar.rx.text.compactMap { $0 }
+            .throttle(1, scheduler: MainScheduler.instance).subscribe(onNext: { [weak self] searchString in
+                guard let self = self else { return }
+                self.viewModel.search(for: searchString)
+            }).disposed(by: disposeBag)
     }
     
     private func setupActions() {
@@ -103,8 +112,4 @@ extension SearchViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.performItemSelection(at: indexPath)
     }
-}
-
-extension SearchViewController: UISearchBarDelegate {
-    
 }

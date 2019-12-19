@@ -10,7 +10,8 @@ import Foundation
 
 class SearchViewModel {
     
-   let dataSource = SearchDataSource()
+    let dataSource = SearchDataSource()
+    let searchPlaceholder = "Search for books"
     
     private let service = BookService()
     private var books: [BookInfo] = []
@@ -30,7 +31,7 @@ class SearchViewModel {
     
     // MARK: - Public/Interface
     
-    func search(for searchString: String) {
+    @objc func search(for searchString: String) {        
         if searchString.count > 0 {
             // We need to check if we need to load the next page
             // Or we need to start the new search
