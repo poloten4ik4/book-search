@@ -9,17 +9,12 @@
 import Foundation
 
 enum NetworkError: Error {
-  
-  case transport(String)
-  
-  case wrongEndpoint
-  
-  case emptyResponse
-  
-  case unknown
+    case transport(String)
+    case wrongEndpoint
+    case emptyResponse
+    case unknown
 }
 
 protocol NetworkClient {
-  
-  func request(endpoint: Endpoint, response: @escaping (Result<Data, NetworkError>) -> Void)
+    func request(endpoint: Endpoint, response: @escaping (Result<Data, NetworkError>) -> Void)
 }
