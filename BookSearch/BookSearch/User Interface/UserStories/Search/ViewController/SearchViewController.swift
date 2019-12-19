@@ -56,6 +56,9 @@ class SearchViewController: UIViewController {
     
     private func layoutColletionView() {
         collectionView.frame = view.bounds
+        let inset = UIEdgeInsets(top: Constants.searchBarHeight, left: 0, bottom: 0, right: 0)
+        collectionView.contentInset = inset
+        collectionView.scrollIndicatorInsets = inset
         (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize = getCellSize()
     }
     
