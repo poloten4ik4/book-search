@@ -42,6 +42,7 @@
 		BDCD69C423ABA455003E7C77 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD69C323ABA455003E7C77 /* BookCell.swift */; };
 		BDCD69C623ABA482003E7C77 /* UIView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD69C523ABA482003E7C77 /* UIView+Reusable.swift */; };
 		BDCD69C923ABA515003E7C77 /* SearchCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD69C823ABA515003E7C77 /* SearchCollectionViewLayout.swift */; };
+		BDCD69CB23ABB663003E7C77 /* UIColor+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD69CA23ABB663003E7C77 /* UIColor+Custom.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,7 @@
 		BDCD69C323ABA455003E7C77 /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
 		BDCD69C523ABA482003E7C77 /* UIView+Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Reusable.swift"; sourceTree = "<group>"; };
 		BDCD69C823ABA515003E7C77 /* SearchCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewLayout.swift; sourceTree = "<group>"; };
+		BDCD69CA23ABB663003E7C77 /* UIColor+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Custom.swift"; sourceTree = "<group>"; };
 		CF0178227480D10079771F8A /* Pods-BookSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookSearch.debug.xcconfig"; path = "Target Support Files/Pods-BookSearch/Pods-BookSearch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -383,6 +385,7 @@
 			children = (
 				BDCD69C023AA99A5003E7C77 /* UIViewController+Helpers.swift */,
 				BDCD69C523ABA482003E7C77 /* UIView+Reusable.swift */,
+				BDCD69CA23ABB663003E7C77 /* UIColor+Custom.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -599,6 +602,7 @@
 				BDCD698723A91B2B003E7C77 /* SearchViewModel.swift in Sources */,
 				BDCD69C923ABA515003E7C77 /* SearchCollectionViewLayout.swift in Sources */,
 				BDCD698A23A95C9A003E7C77 /* BookInfoTranslator.swift in Sources */,
+				BDCD69CB23ABB663003E7C77 /* UIColor+Custom.swift in Sources */,
 				BDCD69B423AA586F003E7C77 /* ApiClient.swift in Sources */,
 				BDCD69BC23AA682B003E7C77 /* BookDetailViewModel.swift in Sources */,
 				BDCD69C423ABA455003E7C77 /* BookCell.swift in Sources */,

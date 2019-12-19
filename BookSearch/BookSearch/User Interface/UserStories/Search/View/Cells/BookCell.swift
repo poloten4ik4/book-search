@@ -34,28 +34,26 @@ class BookCell: UICollectionViewCell, ReusableView {
     
     private let imageView: UIImageView = {
         let view = UIImageView()
+        view.clipsToBounds = true
         view.contentMode = .scaleAspectFill
-        view.backgroundColor = UIColor.orange
+        view.backgroundColor = UIColor.warmGrayColor
         return view
     }()
     
     private let button: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "starIcon"), for: .normal)
         return button
     }()
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .regular)
-        label.numberOfLines = 2
-        label.text = "Mike is determined to get this job because he wants a better life."
+        label.font = .systemFont(ofSize: 12, weight: .regular)
+        label.numberOfLines = 3
         return label
     }()
     
     func configure(_ viewModel: BookCellViewModel) {
-        titleLabel.text = viewModel.title
-        
+        titleLabel.text = viewModel.titleWithAuthor
         let placeholderImage = UIImage(named: viewModel.imagePlaceholderName)
         imageView.kf.setImage(with: viewModel.imageURL, placeholder: placeholderImage, options: [.transition(.fade(0.3))])
     }
@@ -128,7 +126,6 @@ class BookCell: UICollectionViewCell, ReusableView {
 // MARK: - Height
 
 extension BookCell {
-    
     static var height: CGFloat {
         return Constants.defaultHeight
     }

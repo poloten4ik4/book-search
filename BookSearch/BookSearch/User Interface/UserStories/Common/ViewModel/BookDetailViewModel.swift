@@ -29,7 +29,7 @@ struct BookDetailViewModel {
        
         if let isbn = bookInfo.isbn?.first {
             let imageURLString = "http://covers.openlibrary.org/b/isbn/\(isbn)-L.jpg?default=false"
-            imageURL = nil//URL(string: imageURLString) ?? nil
+            imageURL = URL(string: imageURLString) ?? nil
         } else {
             imageURL = nil
         }

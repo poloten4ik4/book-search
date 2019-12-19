@@ -54,6 +54,10 @@ class SearchViewModel {
         }
     }
     
+    func performItemSelection(at indexPath: IndexPath) {
+        onOpenDetail?(books[indexPath.row])
+    }
+    
     // MARK: - Private methods
     
     private func processResult(_ bookSearchResult: BookSearchResult) {
