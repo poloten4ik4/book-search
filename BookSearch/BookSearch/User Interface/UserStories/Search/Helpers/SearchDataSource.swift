@@ -34,8 +34,8 @@ class SearchDataSource: NSObject, UICollectionViewDataSource {
     
     // Cell view models are DTO's (plain objects and structures)
     // So in order to update the existance in wishList, need to recreate the model
-    func updateViewModel(at index: Int, bookInfo: BookInfo) {
-        let newModel = BookCellViewModel(with: bookInfo)
+    func updateViewModel(at index: Int, bookInfo: BookInfo, isInWishList: Bool) {
+        let newModel = BookCellViewModel(with: bookInfo, isInWishList: isInWishList)
         viewModels[index] = newModel
     }
     

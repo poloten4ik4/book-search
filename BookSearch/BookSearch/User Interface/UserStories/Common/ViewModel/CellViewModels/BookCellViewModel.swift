@@ -12,8 +12,9 @@ struct BookCellViewModel {
     let titleWithAuthor: String
     let imageURL: URL?
     let imagePlaceholderName: String
+    let buttonImageName: String
     
-    init(with bookInfo: BookInfo) {
+    init(with bookInfo: BookInfo, isInWishList: Bool) {
         
         var titleAndAuthorString = bookInfo.title
         
@@ -31,5 +32,7 @@ struct BookCellViewModel {
         }
         
         imagePlaceholderName = "placeholderImage"
+        
+        buttonImageName = isInWishList ? "starSelectedIcon" : "starIcon"
     }
 }

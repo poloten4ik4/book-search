@@ -56,6 +56,8 @@ class BookCell: UICollectionViewCell, ReusableView {
         titleLabel.text = viewModel.titleWithAuthor
         let placeholderImage = UIImage(named: viewModel.imagePlaceholderName)
         imageView.kf.setImage(with: viewModel.imageURL, placeholder: placeholderImage, options: [.transition(.fade(0.3))])
+        let buttonImage = UIImage(named: viewModel.buttonImageName)
+        button.setImage(buttonImage, for: .normal)
     }
     
     

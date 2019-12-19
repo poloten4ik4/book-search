@@ -65,10 +65,12 @@ class SearchViewModel {
         // We did not have any piece of data related to the search before
         if bookSearchResult.start == 0 {
             self.dataSource.maximumNumberOfItems = bookSearchResult.num_found
-            self.dataSource.viewModels = bookSearchResult.docs.map { BookCellViewModel(with: $0) }
+            // TODO: add database for isInWishList property
+            self.dataSource.viewModels = bookSearchResult.docs.map { BookCellViewModel(with: $0, isInWishList: true) }
             self.books = bookSearchResult.docs
         } else {
-            let nextPageBookViewModels = bookSearchResult.docs.map { BookCellViewModel(with: $0) }
+            // TODO: add database for isInWishList property
+            let nextPageBookViewModels = bookSearchResult.docs.map { BookCellViewModel(with: $0, isInWishList: true) }
             self.books.append(contentsOf: bookSearchResult.docs)
             self.dataSource.viewModels.append(contentsOf: nextPageBookViewModels)
         }
@@ -99,8 +101,8 @@ class SearchViewModel {
             guard let bookId = book.key else { return }
             service.removeFromWishList(bookId)
         }
-        
-        dataSource.updateViewModel(at: elementIndex, bookInfo: book)
+        // TODO: add database for isInWishList property
+        dataSource.updateViewModel(at: elementIndex, bookInfo: book, isInWishList: true)
         // TODO: Update the collection view cell at this index
     }
 }
