@@ -12,11 +12,13 @@ class SearchViewModel {
     
     let dataSource = SearchDataSource()
     let searchPlaceholder = "Search for books"
+    var isLoading = false
     
     private let service = BookService()
     private var books: [BookInfo] = []
     private var page = 1
     private var lastSearchedString: String = ""
+    private var maximumNumberOfItems: Int = 0
     
     // MARK: - Output
     
@@ -55,6 +57,12 @@ class SearchViewModel {
         }
     }
     
+    func loadNextPage() {
+        if maximumNumberOfItems != books.count {
+            print("load more")
+        }
+    }
+    
     func performItemSelection(at indexPath: IndexPath) {
         onOpenDetail?(books[indexPath.row])
     }
@@ -65,8 +73,8 @@ class SearchViewModel {
         // It's initial loading
         // We did not have any piece of data related to the search before
         if bookSearchResult.start == 0 {
-            self.dataSource.maximumNumberOfItems = bookSearchResult.num_found
             // TODO: add database for isInWishList property
+            self.maximumNumberOfItems = bookSearchResult.num_found
             self.dataSource.viewModels = bookSearchResult.docs.map { BookCellViewModel(with: $0, isInWishList: true) }
             self.books = bookSearchResult.docs
         } else {

@@ -17,18 +17,11 @@ class SearchDataSource: NSObject, UICollectionViewDataSource {
     
     // MARK: - Input
     
-    var maximumNumberOfItems: Int = 0
     var viewModels: [BookCellViewModel] = []
     
     // MARK: - Output
     
     var onCellTap: ((SearchCellTapInfo) -> ())?
-    
-    // MARK: - Inner properties
-    
-    private var shouldHaveLoadingCell: Bool {
-        return viewModels.count != maximumNumberOfItems
-    }
     
     // MARK: - Public methods
     
@@ -42,27 +35,20 @@ class SearchDataSource: NSObject, UICollectionViewDataSource {
     // MARK: - UICollectionView DataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModels.count //return shouldHaveLoadingCell ? viewModels.count + 1 : viewModels.count
+        return viewModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        if shouldHaveLoadingCell && indexPath.row == maximumNumberOfItems {
-//            // loading cell
-//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(LoadingCell.self), for: indexPath) as! LoadingCell
-//        } else {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookCell.reuseId, for: indexPath) as! BookCell
+        // Not sure if we had a retain cycle here, maybe capture list is not mandatory
+        // TODO: check for leak
+        cell.onTap = { [weak self] type in
+            guard let self = self else { return }
+            let tapInfo = SearchCellTapInfo(cellIndex: indexPath.row, interactionType: type)
+            self.onCellTap?(tapInfo)
+        }
         
-            // Not sure if we had a retain cycle here, maybe capture list is not mandatory
-            // TODO: check for leak
-            cell.onTap = { [weak self] type in
-                guard let self = self else { return }
-                let tapInfo = SearchCellTapInfo(cellIndex: indexPath.row, interactionType: type)
-                self.onCellTap?(tapInfo)
-            }
-            
-            cell.configure(viewModels[indexPath.row])
-//        }
-        
+        cell.configure(viewModels[indexPath.row])
         return cell
     }
 }

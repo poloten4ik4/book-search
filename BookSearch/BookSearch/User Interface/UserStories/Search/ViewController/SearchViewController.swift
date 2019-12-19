@@ -90,7 +90,7 @@ class SearchViewController: UIViewController {
         
         // NOTE: To save the time, I have added RxCocoa to do the throttling.
         searchBar.rx.text.compactMap { $0 }
-            .throttle(1, scheduler: MainScheduler.instance).subscribe(onNext: { [weak self] searchString in
+            .debounce(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance).subscribe(onNext: { [weak self] searchString in
                 guard let self = self else { return }
                 self.viewModel.search(for: searchString)
             }).disposed(by: disposeBag)
@@ -114,5 +114,14 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.performItemSelection(at: indexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let modelsCount = viewModel.dataSource.viewModels.count
+        let preloadingTreashold = Int(Float(modelsCount) * 0.75)
+        let threasholdReached = indexPath.item >= preloadingTreashold
+        if !viewModel.isLoading && threasholdReached {
+            viewModel.loadNextPage()
+        }
     }
 }
