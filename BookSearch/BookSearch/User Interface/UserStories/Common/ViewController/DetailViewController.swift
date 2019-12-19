@@ -31,7 +31,6 @@ class BookDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         configureView()
     }
     
@@ -69,12 +68,18 @@ class BookDetailViewController: UIViewController {
     
     private func configureView() {
         guard let viewModel = self.viewModel else { return }
+        
+        view.backgroundColor = .white
+        title = "Book Details"
+        
         setupImageView()
         setupStackView()
         setupLabels()
         
         // Setting the data from view model to UI
-        imageView.kf.setImage(with: viewModel.imageURL, placeholder: UIImage(named: viewModel.imagePlaceholderName))
+        
+        let placeholderImage = UIImage(named: viewModel.imagePlaceholderName)
+        imageView.kf.setImage(with: viewModel.imageURL, placeholder: placeholderImage, options: [.transition(.fade(0.3))])
         
         titleLabel.text = viewModel.title
         authorLabel.text = viewModel.author
@@ -85,7 +90,7 @@ class BookDetailViewController: UIViewController {
     
     private func setupImageView() {
         view.addSubview(imageView)
-        imageView.backgroundColor = .gray
+        imageView.backgroundColor = UIColor(red: 173.0/255.0, green: 173.0/255.0, blue: 173.0/255.0, alpha: 1)
         imageView.contentMode = .scaleAspectFit
     }
     

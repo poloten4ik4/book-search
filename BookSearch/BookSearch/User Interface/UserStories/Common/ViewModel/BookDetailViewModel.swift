@@ -12,7 +12,7 @@ struct BookDetailViewModel {
     let author: String
     let title: String
     let yearOfPublish: String
-    let imageURL: URL
+    let imageURL: URL?
     let imagePlaceholderName: String
     
     init(bookInfo: BookInfo) {
@@ -28,11 +28,10 @@ struct BookDetailViewModel {
         yearOfPublish = "First year of publish: \(publishYear)"
        
         if let isbn = bookInfo.isbn?.first {
-            let imageURLString = "http://covers.openlibrary.org/b/isbn/\(isbn)-M.jpg?default=false"
-            imageURL = URL(string: imageURLString) ?? Constants.noCoverImageURL
+            let imageURLString = "http://covers.openlibrary.org/b/isbn/\(isbn)-L.jpg?default=false"
+            imageURL = nil//URL(string: imageURLString) ?? nil
         } else {
-            // No image
-            imageURL = Constants.noCoverImageURL
+            imageURL = nil
         }
         
         imagePlaceholderName = "placeholderImage"

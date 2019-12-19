@@ -10,7 +10,6 @@ import UIKit
 
 class ViewControllersFabric {
     static func createBookDetailViewController(_ bookInfo: BookInfo) -> BookDetailViewController {
-        // TODO: Provide year of publish
         let bookDetailViewModel = BookDetailViewModel(bookInfo: bookInfo)
         let bookDetailViewController = BookDetailViewController()
         bookDetailViewController.viewModel = bookDetailViewModel

@@ -13,6 +13,7 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.search(for: "Harry Potter")
+        viewModel.search(for: "Holy bible")
+        navigationItem.title = "Search for books"
     }
 }
