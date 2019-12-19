@@ -44,7 +44,6 @@ class BookInfoTranslator {
         let bookInfo = BookInfo(title: bookInfo.title, authors: authors, key: bookInfo.key,
                                 isbn: isbn, firstYearOfPulish: bookInfo.firstYearOfPulish)
         
-        
         return bookInfo
     }
 }

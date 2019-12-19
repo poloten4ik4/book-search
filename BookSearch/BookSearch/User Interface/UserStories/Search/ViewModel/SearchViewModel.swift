@@ -10,15 +10,17 @@ import Foundation
 
 class SearchViewModel {
     
+   let dataSource = SearchDataSource()
+    
     private let service = BookService()
     private var books: [BookInfo] = []
-    private let dataSource = SearchDataSource()
     private var page = 1
     private var lastSearchedString: String = ""
     
     // MARK: - Output
     
-    var onOpenDetail: ((BookInfo) -> ())?
+    var onReloadData: (() -> Void)?
+    var onOpenDetail: ((BookInfo) -> Void)?
     
     // MARK: - Init
     
@@ -39,9 +41,12 @@ class SearchViewModel {
             }
             
             lastSearchedString = searchString
-            service.search(for: searchString, page: page) { result in
+            service.search(for: searchString, page: page) { [weak self] result in
+                guard let self = self else { return }
+                
                 if case .success(let bookSearchResult) = result {
                     self.processResult(bookSearchResult)
+                    self.onReloadData?()
                 } else {
                     // error state
                 }

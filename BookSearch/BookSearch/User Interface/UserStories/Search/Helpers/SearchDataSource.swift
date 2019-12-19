@@ -42,7 +42,7 @@ class SearchDataSource: NSObject, UICollectionViewDataSource {
     // MARK: - UICollectionView DataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return shouldHaveLoadingCell ? viewModels.count + 1 : viewModels.count
+        return viewModels.count //return shouldHaveLoadingCell ? viewModels.count + 1 : viewModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -50,7 +50,7 @@ class SearchDataSource: NSObject, UICollectionViewDataSource {
 //            // loading cell
 //            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(LoadingCell.self), for: indexPath) as! LoadingCell
 //        } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(BookCollectionViewCell.self), for: indexPath) as! BookCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookCell.reuseId, for: indexPath) as! BookCell
         
             // Not sure if we had a retain cycle here, maybe capture list is not mandatory
             // TODO: check for leak

@@ -18,18 +18,20 @@ class ViewControllersFabric {
     }
     
     static func createSearchViewController() -> SearchViewController {
-        let searchViewController = SearchViewController()
+        let viewModel = SearchViewModel()
+        let viewController = SearchViewController()
+        viewController.viewModel = viewModel
         let screenTitle = Constants.ScreenTitles.search
         let tabBarImage = UIImage(named: Constants.ImageNames.search)
-        searchViewController.tabBarItem = UITabBarItem(title: screenTitle, image: tabBarImage, tag: 1)
-        return searchViewController
+        viewController.tabBarItem = UITabBarItem(title: screenTitle, image: tabBarImage, tag: 0)
+        return viewController
     }
     
     static func createWishListViewController() -> WishListViewController {
         let wishListViewController = WishListViewController()
         let screenTitle = Constants.ScreenTitles.wishList
         let tabBarImage = UIImage(named: Constants.ImageNames.wishList)
-        wishListViewController.tabBarItem = UITabBarItem(title: screenTitle, image: tabBarImage, tag: 2)
+        wishListViewController.tabBarItem = UITabBarItem(title: screenTitle, image: tabBarImage, tag: 1)
         return wishListViewController
     }
 }

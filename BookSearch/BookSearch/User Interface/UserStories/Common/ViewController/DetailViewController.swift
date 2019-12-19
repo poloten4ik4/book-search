@@ -90,7 +90,7 @@ class BookDetailViewController: UIViewController {
     
     private func setupImageView() {
         view.addSubview(imageView)
-        imageView.backgroundColor = UIColor(red: 173.0/255.0, green: 173.0/255.0, blue: 173.0/255.0, alpha: 1)
+        imageView.backgroundColor = UIColor(white: 173.0/255.0, alpha: 1.0)
         imageView.contentMode = .scaleAspectFit
     }
     
