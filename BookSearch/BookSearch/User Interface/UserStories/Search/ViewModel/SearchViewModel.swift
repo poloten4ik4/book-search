@@ -13,6 +13,8 @@ class SearchViewModel {
     let dataSource = SearchDataSource()
     let searchPlaceholder = "Search for books"
     var isLoading = false
+    var isNextPageLoadingInProcess = false
+    
     
     private let service = BookService()
     private var books: [BookInfo] = []
@@ -24,6 +26,7 @@ class SearchViewModel {
     
     var onReloadData: (() -> Void)?
     var onOpenDetail: ((BookInfo) -> Void)?
+    var onScrollToTop: (() -> Void)?
     
     // MARK: - Init
     
@@ -44,12 +47,20 @@ class SearchViewModel {
             }
             
             lastSearchedString = searchString
+            
+            if page > 1 {
+                isNextPageLoadingInProcess = true
+            }
+            
             service.search(for: searchString, page: page) { [weak self] result in
                 guard let self = self else { return }
-                
+                self.isNextPageLoadingInProcess = false
                 if case .success(let bookSearchResult) = result {
                     self.processResult(bookSearchResult)
                     self.onReloadData?()
+                    if self.page == 1 {
+                        self.onScrollToTop?()
+                    }
                 } else {
                     // error state
                 }
@@ -58,8 +69,9 @@ class SearchViewModel {
     }
     
     func loadNextPage() {
+        guard !isNextPageLoadingInProcess else { return }
         if maximumNumberOfItems != books.count {
-            print("load more")
+            search(for: lastSearchedString)
         }
     }
     

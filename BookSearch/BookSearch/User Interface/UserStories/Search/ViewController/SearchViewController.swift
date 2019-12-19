@@ -100,6 +100,11 @@ class SearchViewController: UIViewController {
         viewModel.onReloadData = { [weak self] in
             self?.collectionView.reloadData()
         }
+        
+        viewModel.onScrollToTop = { [weak self] in
+            guard let self = self else { return }
+            self.collectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+        }
     }
     
     // MARK: - Private. Helpers
