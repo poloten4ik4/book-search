@@ -21,6 +21,12 @@ class BookDetailViewController: UIViewController {
     private let firstPublishYearLabel = UILabel()
     
     
+    // MARK: - Constants related to View Controller
+    
+    private enum Constants {
+        static let standardSpacing: CGFloat = 10.0
+    }
+    
     // MARK: - Lyfecycle
     
     override func viewDidLoad() {
@@ -32,16 +38,31 @@ class BookDetailViewController: UIViewController {
     // MARK: - Layout
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let labelSpacing: CGFloat = 20.0
-        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 49.0
-        let imageViewHeight = view.bounds.width
-        let stackViewY = topbarHeight + imageViewHeight + labelSpacing
+        layoutViews()
+    }
+    
+    private func layoutViews() {
+        // Our viewController's view has valid size and we can do the layout
+        layoutImageView()
+        layoutStackView()
+    }
+    
+    private func layoutImageView() {
+        let origin = CGPoint(x: 0, y: topbarHeight)
+        // Let's assume it's a square image view
+        let size = CGSize(width: view.bounds.width, height: view.bounds.width)
+        imageView.frame = CGRect(origin: origin, size: size)
+    }
+    
+    private func layoutStackView() {
+        let stackViewY = topbarHeight + view.bounds.width + Constants.standardSpacing
+        let stackViewWidth = view.bounds.width - 2 * Constants.standardSpacing
+        let stackViewHeight = Constants.standardSpacing * 2 + titleLabel.intrinsicContentSize.height + firstPublishYearLabel.intrinsicContentSize.height + authorLabel.intrinsicContentSize.height
         
-        let labelsContainerWidth = view.bounds.width - 2 * labelSpacing
-        let labelsContainerHeight = view.bounds.height - stackViewY - tabBarHeight
+        let origin = CGPoint(x: Constants.standardSpacing, y: stackViewY)
+        let size = CGSize(width: stackViewWidth, height: stackViewHeight)
         
-        imageView.frame = CGRect(x: 0, y: topbarHeight, width: view.bounds.width, height: imageViewHeight)
-        labelsStackView.frame = CGRect(x: labelSpacing, y: stackViewY, width: labelsContainerWidth, height: labelsContainerHeight)
+        labelsStackView.frame = CGRect(origin: origin, size: size)
     }
     
     // MARK: - Configuration
@@ -70,7 +91,7 @@ class BookDetailViewController: UIViewController {
     
     private func setupStackView() {
         labelsStackView.axis = .vertical
-        labelsStackView.spacing = 20
+        labelsStackView.spacing = Constants.standardSpacing
         labelsStackView.alignment = .top
     }
     
@@ -88,15 +109,13 @@ class BookDetailViewController: UIViewController {
         setupPublishYearLabel()
     }
     
-    // MARK: - Labels Setup
-    
     private func setupTitleLabel() {
         titleLabel.font = .boldSystemFont(ofSize: 15.0)
         titleLabel.numberOfLines = 2
     }
     
     private func setupAuthorLabel() {
-        authorLabel.font = .boldSystemFont(ofSize: 15.0)
+        authorLabel.font = .boldSystemFont(ofSize: 14.0)
         authorLabel.numberOfLines = 2
     }
     
