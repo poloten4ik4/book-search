@@ -7,8 +7,7 @@
 //
 
 extension Endpoint {
-  
-  var baseUrl: String {
-    return "https://openlibrary.org"
-  }
+    var baseUrl: String {
+        return "https://openlibrary.org"
+    }
 }

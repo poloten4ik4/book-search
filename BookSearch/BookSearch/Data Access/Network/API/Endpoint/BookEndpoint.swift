@@ -12,29 +12,29 @@ enum BookEndpoint {
 
 extension BookEndpoint: Endpoint {
   
-  var method: HTTPMethod {
-    switch self {
-    case .search:
-      return .get
+    var method: HTTPMethod {
+        switch self {
+        case .search:
+            return .get
+        }
     }
-  }
-  
-  var path: String {
-    switch self {
-    case .search:
-      return "search.json"
+    
+    var path: String {
+        switch self {
+        case .search:
+            return "search.json"
+        }
     }
-  }
-  
-  var headers: [String: String] {
-    switch self {
-    case .search(let keyword, let page):
-        return ["title": keyword.replacingOccurrences(of: " ", with: "+"),
-                "page": String(page)]
+    
+    var headers: [String: String] {
+        switch self {
+        case .search(let keyword, let page):
+            return ["title": keyword.replacingOccurrences(of: " ", with: "+"),
+                    "page": String(page)]
+        }
     }
-  }
-  
-  var task: Task {
-    return .request
-  }
+    
+    var task: Task {
+        return .request
+    }
 }

@@ -9,28 +9,19 @@
 import Foundation
 
 enum HTTPMethod: String {
-
-  case get = "GET"
-  
-  case post = "POST"
+    case get = "GET"
+    case post = "POST"
 }
 
 enum Task {
-  
-  case request
-
-  case requestData(Data)
+    case request
+    case requestData(Data)
 }
 
 protocol Endpoint {
-  
-  var method: HTTPMethod { get }
-  
-  var baseUrl: String { get }
-  
-  var path: String { get }
-  
-  var headers: [String: String] { get }
-  
-  var task: Task { get }
+    var method: HTTPMethod { get }
+    var baseUrl: String { get }
+    var path: String { get }
+    var headers: [String: String] { get }
+    var task: Task { get }
 }
