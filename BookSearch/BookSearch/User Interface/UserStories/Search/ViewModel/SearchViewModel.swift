@@ -28,6 +28,11 @@ class SearchViewModel {
     var onOpenDetail: ((BookInfo) -> Void)?
     var onScrollToTop: (() -> Void)?
     
+    // We can to RX bindings here but for simplicity, I will avoid it here
+    
+    var onUpdateEmptyResultsVisibility: ((Bool) -> Void)?
+    var onShowLoading: ((Bool) -> Void)?
+    
     // MARK: - Init
     
     init() {
@@ -50,14 +55,22 @@ class SearchViewModel {
             
             if page > 1 {
                 isNextPageLoadingInProcess = true
+            } else {
+                // If the search is new - clear the data
+                clearData()
+                onReloadData?()
+                onUpdateEmptyResultsVisibility?(false)
             }
             
+            onShowLoading?(true)
             service.search(for: searchString, page: page) { [weak self] result in
                 guard let self = self else { return }
+                self.onShowLoading?(false)
                 self.isNextPageLoadingInProcess = false
                 if case .success(let bookSearchResult) = result {
                     self.processResult(bookSearchResult)
                     self.onReloadData?()
+                    self.onUpdateEmptyResultsVisibility?(bookSearchResult.num_found == 0)
                     if self.page == 1 {
                         self.onScrollToTop?()
                     }
@@ -125,5 +138,11 @@ class SearchViewModel {
         // TODO: add database for isInWishList property
         dataSource.updateViewModel(at: elementIndex, bookInfo: book, isInWishList: true)
         // TODO: Update the collection view cell at this index
+    }
+    
+    private func clearData() {
+        self.maximumNumberOfItems = 0
+        self.dataSource.viewModels = []
+        self.books = []
     }
 }

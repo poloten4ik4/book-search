@@ -33,6 +33,20 @@ class SearchViewController: UIViewController {
         return searchBar
     }()
     
+    let emptyResultsLabel: UILabel = {
+        let emptyLabel = UILabel()
+        emptyLabel.numberOfLines = 1
+        emptyLabel.font = .systemFont(ofSize: 15)
+        emptyLabel.isHidden = true
+        emptyLabel.textAlignment = .center
+        return emptyLabel
+    }()
+    
+    let loadingIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        return indicator
+    }()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -52,6 +66,8 @@ class SearchViewController: UIViewController {
     private func layoutViews() {
         layoutColletionView()
         layoutSearchBar()
+        layoutEmptyLabel()
+        layoutLoadingIndicator()
     }
     
     private func layoutColletionView() {
@@ -68,12 +84,22 @@ class SearchViewController: UIViewController {
         searchBar.frame = CGRect(origin: origin, size: size)
     }
     
+    private func layoutLoadingIndicator() {
+        loadingIndicator.frame = view.bounds
+    }
+    
+    private func layoutEmptyLabel() {
+        emptyResultsLabel.frame = view.bounds
+    }
+    
     // MARK: - Private. Setup
     
     private func setupUI() {
         view.backgroundColor = .white
         setupCollectionView()
         setupSearchBar()
+        setupEmptyLabel()
+        setupLoadingIndicator()
     }
     
     private func setupCollectionView() {
@@ -82,6 +108,15 @@ class SearchViewController: UIViewController {
         collectionView.dataSource = viewModel.dataSource
         collectionView.delegate = self
         collectionView.backgroundColor = .white
+    }
+    
+    private func setupEmptyLabel() {
+        view.addSubview(emptyResultsLabel)
+        emptyResultsLabel.text = "Sorry, we couldn't find anything"
+    }
+    
+    private func setupLoadingIndicator() {
+        view.addSubview(loadingIndicator)
     }
     
     private func setupSearchBar() {
@@ -104,6 +139,16 @@ class SearchViewController: UIViewController {
         viewModel.onScrollToTop = { [weak self] in
             guard let self = self else { return }
             self.collectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+        }
+        
+        viewModel.onUpdateEmptyResultsVisibility = { [weak self] shouldShowEmptyLabel in
+            guard let self = self else { return }
+            self.emptyResultsLabel.isHidden = !shouldShowEmptyLabel
+        }
+        
+        viewModel.onShowLoading = { [weak self] shouldShowLoading in
+            guard let self = self else { return }
+            shouldShowLoading ? self.loadingIndicator.startAnimating() : self.loadingIndicator.stopAnimating()
         }
     }
     
