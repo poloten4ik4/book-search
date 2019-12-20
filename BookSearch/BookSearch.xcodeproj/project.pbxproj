@@ -175,13 +175,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		BD0532B323A8E6E3009ECB87 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		BD0532B423A8E6E6009ECB87 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,7 +246,6 @@
 		BD0532C823A8F1B1009ECB87 /* Wishlist */ = {
 			isa = PBXGroup;
 			children = (
-				BD0532D223A8F20A009ECB87 /* View */,
 				BD0532D023A8F200009ECB87 /* ViewController */,
 				BD0532D123A8F206009ECB87 /* ViewModel */,
 			);
@@ -263,7 +255,6 @@
 		BD0532C923A8F1B7009ECB87 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				BD0532B323A8E6E3009ECB87 /* View */,
 				BD0532B423A8E6E6009ECB87 /* ViewController */,
 				BD0532B223A8E6DD009ECB87 /* ViewModel */,
 			);
@@ -309,13 +300,6 @@
 				BDCD69CE23ACD27F003E7C77 /* WishListViewModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		BD0532D223A8F20A009ECB87 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		BD0532D323A8F2C1009ECB87 /* Resources */ = {
