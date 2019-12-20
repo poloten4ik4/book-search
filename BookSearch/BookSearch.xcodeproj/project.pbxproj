@@ -191,7 +191,7 @@
 		BD0532B523A8E6EB009ECB87 /* UserStories */ = {
 			isa = PBXGroup;
 			children = (
-				BD0532C923A8F1B7009ECB87 /* Common */,
+				BD0532C923A8F1B7009ECB87 /* Detail */,
 				BD0532C723A8F16A009ECB87 /* Search */,
 				BD0532C823A8F1B1009ECB87 /* Wishlist */,
 			);
@@ -258,14 +258,14 @@
 			path = Wishlist;
 			sourceTree = "<group>";
 		};
-		BD0532C923A8F1B7009ECB87 /* Common */ = {
+		BD0532C923A8F1B7009ECB87 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
 				BD0532B323A8E6E3009ECB87 /* View */,
 				BD0532B423A8E6E6009ECB87 /* ViewController */,
 				BD0532B223A8E6DD009ECB87 /* ViewModel */,
 			);
-			path = Common;
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		BD0532CA23A8F1D9009ECB87 /* ViewController */ = {

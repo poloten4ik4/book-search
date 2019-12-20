@@ -13,6 +13,7 @@ class SearchViewModel {
     
     let dataSource = SearchDataSource()
     let searchPlaceholder = "Search for books"
+    let noResultsText = "Sorry, we couldn't find anything"
     var isLoading = false
     var isNextPageLoadingInProcess = false
     
@@ -139,17 +140,16 @@ class SearchViewModel {
     
     private func processWishListAction(elementIndex: Int, type: WishListOperationType) {
         let book = books[elementIndex]
-        var isInWishList = false
-        
+
         switch type {
         case .add:
             service.addToWishList(book)
-            isInWishList = true
+            dataSource.updateViewModel(at: elementIndex, bookInfo: book, isInWishList: true)
         case .remove:
             service.removeFromWishList(book.key)
+            dataSource.updateViewModel(at: elementIndex, bookInfo: book, isInWishList: false)
         }
         
-        dataSource.updateViewModel(at: elementIndex, bookInfo: book, isInWishList: isInWishList)
         onUpdateCell?(elementIndex)
     }
     

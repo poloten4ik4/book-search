@@ -71,10 +71,10 @@ class SearchViewController: UIViewController {
     }
     
     private func layoutColletionView() {
-        collectionView.frame = view.bounds
-        let inset = UIEdgeInsets(top: Constants.searchBarHeight, left: 0, bottom: 0, right: 0)
-        collectionView.contentInset = inset
-        collectionView.scrollIndicatorInsets = inset
+        collectionView.frame = CGRect(x: 0,
+                                      y: Constants.searchBarHeight + topbarHeight,
+                                      width: view.bounds.width,
+                                      height: view.bounds.height - Constants.searchBarHeight - topbarHeight)
         (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize = getCellSize()
     }
     
@@ -112,7 +112,7 @@ class SearchViewController: UIViewController {
     
     private func setupEmptyLabel() {
         view.addSubview(emptyResultsLabel)
-        emptyResultsLabel.text = "Sorry, we couldn't find anything"
+        emptyResultsLabel.text = viewModel.noResultsText
     }
     
     private func setupLoadingIndicator() {
@@ -123,9 +123,10 @@ class SearchViewController: UIViewController {
         view.addSubview(searchBar)
         searchBar.placeholder = viewModel.searchPlaceholder
         
-        // NOTE: To save the time, I have added RxCocoa to do the throttling.
+        // NOTE: To save the time, I have added RxCocoa to do the throttling.]
+        let throttleInterval = RxTimeInterval.milliseconds(400)
         searchBar.rx.text.compactMap { $0 }
-            .debounce(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance).subscribe(onNext: { [weak self] searchString in
+            .debounce(throttleInterval, scheduler: MainScheduler.instance).subscribe(onNext: { [weak self] searchString in
                 guard let self = self else { return }
                 self.viewModel.search(for: searchString)
             }).disposed(by: disposeBag)
@@ -138,7 +139,7 @@ class SearchViewController: UIViewController {
         
         viewModel.onScrollToTop = { [weak self] in
             guard let self = self else { return }
-            self.collectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+            self.collectionView.setContentOffset(CGPoint(x: 0, y: -50), animated: false)
         }
         
         viewModel.onUpdateEmptyResultsVisibility = { [weak self] shouldShowEmptyLabel in
@@ -172,6 +173,8 @@ extension SearchViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        // This is the silent page loading logic
+        // If we reach 75% of the collection view - the next page will start loading
         let modelsCount = viewModel.dataSource.viewModels.count
         let preloadingTreashold = Int(Float(modelsCount) * 0.75)
         let threasholdReached = indexPath.item >= preloadingTreashold

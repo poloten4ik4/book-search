@@ -9,15 +9,13 @@
 import Foundation
 
 struct BookDetailViewModel {
-    let author: String
-    let title: String
+    let titleAndAuthor: String
     let yearOfPublish: String
     let imageURL: URL?
     let imagePlaceholderName: String
     
     init(bookInfo: BookInfo) {
-        author = "by " + (bookInfo.authors?.first ?? "Unknown author")
-        title = bookInfo.title
+        titleAndAuthor = bookInfo.title + "by " + (bookInfo.authors?.first ?? "Unknown author")
         
         var publishYear = "Unknown"
         
