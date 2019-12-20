@@ -18,7 +18,11 @@ class WishListCoordinator: Coordinator {
     }
     
     func start() {
-        // TODO: Implement Wish List flow start
+        guard let wishListViewController = navigationController.viewControllers.first as? WishListViewController else { return }
+        
+        wishListViewController.viewModel.onOpenDetail = { bookInfo in
+            self.openDetail(bookInfo)
+        }
     }
     
     private func openDetail(_ bookInfo: BookInfo) {

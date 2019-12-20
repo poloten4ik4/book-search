@@ -47,6 +47,7 @@ class WishListViewModel {
             self.books = books
             self.dataSource.viewModels = books.map { BookCellViewModel(with: $0, isInWishList: true) }
             self.onUpdateEmptyResultsVisibility?(books.isEmpty)
+            self.onReloadData?()
         }).disposed(by: disposeBag)
     }
     
