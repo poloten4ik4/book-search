@@ -13,7 +13,6 @@ import RxSwift
 class SearchViewController: UIViewController {
     
     private enum Constants {
-        static let spacing: CGFloat = 16
         static let searchBarHeight: CGFloat = 44
     }
     
@@ -72,6 +71,7 @@ class SearchViewController: UIViewController {
     }
     
     // MARK: - Layout
+    
     private func layoutViews() {
         layoutColletionView()
         layoutSearchBar()
@@ -148,6 +148,8 @@ class SearchViewController: UIViewController {
     }
     
     private func setupActions() {
+        // We can also do Rx bindings but to simplify it here, I used closures
+        
         viewModel.onReloadData = { [weak self] in
             self?.collectionView.reloadData()
         }
@@ -186,9 +188,9 @@ extension SearchViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         // This is the silent page loading logic
-        // If we reach 75% of the collection view - the next page will start loading
+        // If we reach 90% of the collection view - the next page will start loading
         let modelsCount = viewModel.dataSource.viewModels.count
-        let preloadingTreashold = Int(Float(modelsCount) * 0.75)
+        let preloadingTreashold = Int(Float(modelsCount) * 0.9)
         let threasholdReached = indexPath.item >= preloadingTreashold
         if !viewModel.isLoading && threasholdReached {
             viewModel.loadNextPage()
