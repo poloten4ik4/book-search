@@ -20,18 +20,18 @@ final class NetworkClientImp {
 // MARK: - NetworkClient
 
 extension NetworkClientImp: NetworkClient {
-    func request(endpoint: Endpoint, response: @escaping (Result<Data, NetworkError>) -> Void) {
+    func request(endpoint: Endpoint, response: @escaping (Result<Data, NetworkError>) -> Void) -> URLSessionDataTask? {
         
         guard var components = URLComponents(string: endpoint.fullPath) else {
             response(.failure(.wrongEndpoint))
-            return
+            return nil
         }
         
         components.queryItems = endpoint.headers.map { URLQueryItem(name: $0.0, value: $0.1) }
         
         guard let url = components.url else {
             response(.failure(.wrongEndpoint))
-            return
+            return nil
         }
         
         var request = URLRequest(url: url)
@@ -60,6 +60,8 @@ extension NetworkClientImp: NetworkClient {
         }
         
         task.resume()
+        
+        return task
     }
 }
 

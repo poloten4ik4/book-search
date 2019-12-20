@@ -16,8 +16,8 @@ enum ApiError: Error {
 }
 
 extension NetworkClient {
-    func requestObject<T: Decodable>(endpoint: Endpoint, response: @escaping (Result<T, ApiError>) -> Void) {
-        request(endpoint: endpoint) { result in
+    func requestObject<T: Decodable>(endpoint: Endpoint, response: @escaping (Result<T, ApiError>) -> Void) -> URLSessionDataTask? {
+        return request(endpoint: endpoint) { result in
             switch result {
             case .success(let data):
                 guard let obj = try? JSONDecoder().decode(T.self, from: data) else {

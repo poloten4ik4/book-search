@@ -16,5 +16,5 @@ enum NetworkError: Error {
 }
 
 protocol NetworkClient {
-    func request(endpoint: Endpoint, response: @escaping (Result<Data, NetworkError>) -> Void)
+    func request(endpoint: Endpoint, response: @escaping (Result<Data, NetworkError>) -> Void) -> URLSessionDataTask?
 }

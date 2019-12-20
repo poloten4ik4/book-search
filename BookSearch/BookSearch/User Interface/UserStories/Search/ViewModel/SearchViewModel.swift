@@ -43,26 +43,20 @@ class SearchViewModel {
     
     @objc func search(for searchString: String) {        
         if searchString.count > 0 {
-            // We need to check if we need to load the next page
-            // Or we need to start the new search
-            if searchString != lastSearchedString {
-                page = 1
-            } else {
-                page += 1
-            }
-            
+            updateLoadedPageIfNeeded(searchString: searchString)
             lastSearchedString = searchString
             
             if page > 1 {
                 isNextPageLoadingInProcess = true
             } else {
-                // If the search is new - clear the data
+                // If the search is new - clear the data source and update UI
                 clearData()
                 onReloadData?()
                 onUpdateEmptyResultsVisibility?(false)
             }
             
             onShowLoading?(true)
+            
             service.search(for: searchString, page: page) { [weak self] result in
                 guard let self = self else { return }
                 self.onShowLoading?(false)
@@ -93,6 +87,16 @@ class SearchViewModel {
     }
     
     // MARK: - Private methods
+    
+    private func updateLoadedPageIfNeeded(searchString: String) {
+        // We need to check if we need to load the next page
+        // Or we need to start the new search
+        if searchString != lastSearchedString {
+            page = 1
+        } else {
+            page += 1
+        }
+    }
     
     private func processResult(_ bookSearchResult: BookSearchResult) {
         // It's initial loading

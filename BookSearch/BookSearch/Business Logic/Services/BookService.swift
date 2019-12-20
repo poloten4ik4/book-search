@@ -9,7 +9,8 @@
 import Foundation
 
 protocol BookServiceProtocol {
-    func search(for searchString: String, page: Int, completion: @escaping (Result<BookSearchResult, ApiError>) -> Void)
+    func search(for searchString: String, page: Int, cancelPreviousRequest: Bool,
+                completion: @escaping (Result<BookSearchResult, ApiError>) -> Void)
     func addToWishList(_ bookInfo: BookInfo)
     func removeFromWishList(_ bookInfoKey: String)
     func obtainWishListBooks() -> [BookInfo]?
@@ -19,14 +20,25 @@ final class BookService: Service, BookServiceProtocol {
     let realmDataProvider = DataProvider()
     let translator = BookInfoTranslator()
     let apiClient = NetworkClientImp()
+    var requestQueue: [URLSessionDataTask] = []
     
-    func search(for searchString: String, page: Int, completion: @escaping (Result<BookSearchResult, ApiError>) -> Void)  {
+    func search(for searchString: String, page: Int, cancelPreviousRequest: Bool = true, completion: @escaping (Result<BookSearchResult, ApiError>) -> Void)  {
+        
+        if cancelPreviousRequest {
+            requestQueue.forEach({ $0.cancel() })
+            requestQueue.removeAll()
+        }
+        
         let searchEndpoint = BookEndpoint.search(keyword: searchString, page: page)
-        apiClient.requestObject(endpoint: searchEndpoint) { (response: Result<BookSearchResult, ApiError>) in
+
+        let request = apiClient.requestObject(endpoint: searchEndpoint) { (response: Result<BookSearchResult, ApiError>) in
             DispatchQueue.main.async {
                 completion(response)
             }
         }
+        
+        guard let validRequest = request else { return }
+        requestQueue.append(validRequest)
     }
     
     func addToWishList(_ bookInfo: BookInfo) {
