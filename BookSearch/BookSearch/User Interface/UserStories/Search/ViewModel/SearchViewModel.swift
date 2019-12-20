@@ -31,13 +31,14 @@ class SearchViewModel {
     
     // MARK: - Output
     
+    // We can to RX bindings here but for simplicity, I will avoid it here
+    // Normally, in big projects, I would do the Rx binding with ACTION object
+    // And this ACTION object will contain all types of action related to this View model
+    
     var onReloadData: (() -> Void)?
     var onUpdateCell: ((Int) -> Void)?
     var onOpenDetail: ((BookInfo) -> Void)?
     var onScrollToTop: (() -> Void)?
-    
-    // We can to RX bindings here but for simplicity, I will avoid it here
-    
     var onUpdateEmptyResultsVisibility: ((Bool) -> Void)?
     var onUpdateErrorVisibility: ((Bool) -> Void)?
     var onShowLoading: ((Bool) -> Void)?
@@ -50,7 +51,20 @@ class SearchViewModel {
     
     // MARK: - Public/Interface
     
-    @objc func search(for searchString: String) {        
+    func loadNextPage() {
+        guard !isNextPageLoadingInProcess else { return }
+        if maximumNumberOfItems != books.count {
+            search(for: lastSearchedString)
+        }
+    }
+    
+    func performItemSelection(at indexPath: IndexPath) {
+        onOpenDetail?(books[indexPath.row])
+    }
+    
+    // MARK: - Private methods
+    
+    private func search(for searchString: String) {
         if searchString.count > 0 {
             updateLoadedPageIfNeeded(searchString: searchString)
             lastSearchedString = searchString
@@ -91,19 +105,6 @@ class SearchViewModel {
             }
         }
     }
-    
-    func loadNextPage() {
-        guard !isNextPageLoadingInProcess else { return }
-        if maximumNumberOfItems != books.count {
-            search(for: lastSearchedString)
-        }
-    }
-    
-    func performItemSelection(at indexPath: IndexPath) {
-        onOpenDetail?(books[indexPath.row])
-    }
-    
-    // MARK: - Private methods
     
     private func updateLoadedPageIfNeeded(searchString: String) {
         // We need to check if we need to load the next page
