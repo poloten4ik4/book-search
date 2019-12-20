@@ -12,9 +12,9 @@ class BookInfoPersistable: Object {
     @objc dynamic var key: String = ""
     @objc dynamic var title: String = ""
     
-    var firstYearOfPulish: Int?
-    var authors: List<String>?
-    var isbn: List<String>?
+    dynamic var firstYearOfPulish: Int? = 0
+    dynamic var authors = List<String>()
+    dynamic var isbn = List<String>()
     
     override static func primaryKey() -> String? {
         return "key"
