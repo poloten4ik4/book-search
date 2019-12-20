@@ -62,6 +62,11 @@ class SearchViewModel {
         onOpenDetail?(books[indexPath.row])
     }
     
+    func performUpdateIfNeeded() {
+        dataSource.viewModels = books.map { BookCellViewModel(with: $0, isInWishList: booksInWishListSet.contains($0)) }
+        onReloadData?()
+    }
+    
     // MARK: - Private methods
     
     private func search(for searchString: String) {

@@ -70,6 +70,11 @@ class SearchViewController: UIViewController {
         layoutViews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.performUpdateIfNeeded()
+    }
+    
     // MARK: - Layout
     
     private func layoutViews() {
