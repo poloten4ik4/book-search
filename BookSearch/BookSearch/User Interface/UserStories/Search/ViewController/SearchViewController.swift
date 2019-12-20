@@ -42,6 +42,15 @@ class SearchViewController: UIViewController {
         return emptyLabel
     }()
     
+    let errorLabel: UILabel = {
+        let errorLabel = UILabel()
+        errorLabel.numberOfLines = 1
+        errorLabel.font = .systemFont(ofSize: 15)
+        errorLabel.isHidden = true
+        errorLabel.textAlignment = .center
+        return errorLabel
+    }()
+    
     let loadingIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
         return indicator
@@ -66,7 +75,7 @@ class SearchViewController: UIViewController {
     private func layoutViews() {
         layoutColletionView()
         layoutSearchBar()
-        layoutEmptyLabel()
+        layoutLabels()
         layoutLoadingIndicator()
     }
     
@@ -88,8 +97,9 @@ class SearchViewController: UIViewController {
         loadingIndicator.frame = view.bounds
     }
     
-    private func layoutEmptyLabel() {
+    private func layoutLabels() {
         emptyResultsLabel.frame = view.bounds
+        errorLabel.frame = view.bounds
     }
     
     // MARK: - Private. Setup
@@ -99,6 +109,7 @@ class SearchViewController: UIViewController {
         setupCollectionView()
         setupSearchBar()
         setupEmptyLabel()
+        setupErrorLabel()
         setupLoadingIndicator()
     }
     
@@ -113,6 +124,11 @@ class SearchViewController: UIViewController {
     private func setupEmptyLabel() {
         view.addSubview(emptyResultsLabel)
         emptyResultsLabel.text = viewModel.noResultsText
+    }
+    
+    private func setupErrorLabel() {
+        view.addSubview(errorLabel)
+        errorLabel.text = viewModel.errorText
     }
     
     private func setupLoadingIndicator() {
@@ -140,6 +156,11 @@ class SearchViewController: UIViewController {
         viewModel.onUpdateEmptyResultsVisibility = { [weak self] shouldShowEmptyLabel in
             guard let self = self else { return }
             self.emptyResultsLabel.isHidden = !shouldShowEmptyLabel
+        }
+        
+        viewModel.onUpdateErrorVisibility = { [weak self] shouldShowErrorLabel in
+            guard let self = self else { return }
+            self.errorLabel.isHidden = !shouldShowErrorLabel
         }
         
         viewModel.onShowLoading = { [weak self] shouldShowLoading in

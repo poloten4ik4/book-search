@@ -15,6 +15,7 @@ class SearchViewModel {
     let dataSource = BooksDataSource()
     let searchPlaceholder = "Search for books"
     let noResultsText = "Sorry, we couldn't find anything"
+    let errorText = "Error. Please try again later"
     var isLoading = false
     var isNextPageLoadingInProcess = false
     let searchEvent = BehaviorRelay<String?>(value: nil)
@@ -38,6 +39,7 @@ class SearchViewModel {
     // We can to RX bindings here but for simplicity, I will avoid it here
     
     var onUpdateEmptyResultsVisibility: ((Bool) -> Void)?
+    var onUpdateErrorVisibility: ((Bool) -> Void)?
     var onShowLoading: ((Bool) -> Void)?
     
     // MARK: - Init
@@ -60,25 +62,30 @@ class SearchViewModel {
                 clearData()
                 onReloadData?()
                 onUpdateEmptyResultsVisibility?(false)
+                onUpdateErrorVisibility?(false)
             }
             
             onShowLoading?(true)
             
             service.search(for: searchString, page: page) { [weak self] result in
                 guard let self = self else { return }
+                self.onShowLoading?(false)
                 
                 if case .success(let bookSearchResult) = result {
-                    self.onShowLoading?(false)
                     self.isNextPageLoadingInProcess = false
                     self.processResult(bookSearchResult)
                     self.onReloadData?()
                     self.onUpdateEmptyResultsVisibility?(bookSearchResult.num_found == 0)
+                    self.onUpdateErrorVisibility?(false)
+                    // We can be in the middle of collection view
+                    // To show new search result, we need to scroll up
                     if self.page == 1 {
                         self.onScrollToTop?()
                     }
                 } else if case .failure(let error) = result {
                     if error != .cancelled {
-                        // error state
+                        self.onUpdateErrorVisibility?(true)
+                        self.onUpdateEmptyResultsVisibility?(false)
                     }
                 }
             }
@@ -151,6 +158,7 @@ class SearchViewModel {
                     self.clearData()
                     self.onReloadData?()
                     self.onUpdateEmptyResultsVisibility?(false)
+                    self.onUpdateErrorVisibility?(false)
                     return
                 }
                 
