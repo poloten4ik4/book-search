@@ -343,7 +343,6 @@
 		BDCD696923A905F8003E7C77 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				BDCD69A323AA3C49003E7C77 /* Protocols */,
 				BDCD69A223AA3C3D003E7C77 /* Extensions */,
 				BD05329C23A8E6BF009ECB87 /* AppDelegate.swift */,
 				BDCD696A23A90602003E7C77 /* Constants.swift */,
@@ -391,13 +390,6 @@
 				BDCD69CA23ABB663003E7C77 /* UIColor+Custom.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		BDCD69A323AA3C49003E7C77 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		BDCD69A723AA586F003E7C77 /* Network */ = {
