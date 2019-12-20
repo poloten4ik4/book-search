@@ -27,14 +27,14 @@ class BookInfoTranslator {
         persistableBookInfo.key = bookInfo.key
         persistableBookInfo.isbn = isbnList
         persistableBookInfo.authors = authorsList
-        persistableBookInfo.firstYearOfPulish = bookInfo.firstYearOfPulish
+        persistableBookInfo.firstYearOfPulish.value = bookInfo.firstYearOfPulish
         
         return persistableBookInfo
     }
     
     func translate(_ bookInfo: BookInfoPersistable) -> BookInfo {        
         let bookInfo = BookInfo(title: bookInfo.title, authors: Array(bookInfo.authors), key: bookInfo.key,
-                                isbn: Array(bookInfo.isbn), firstYearOfPulish: bookInfo.firstYearOfPulish)
+                                isbn: Array(bookInfo.isbn), firstYearOfPulish: bookInfo.firstYearOfPulish.value)
         
         return bookInfo
     }

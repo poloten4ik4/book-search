@@ -12,7 +12,7 @@ class BookInfoPersistable: Object {
     @objc dynamic var key: String = ""
     @objc dynamic var title: String = ""
     
-    dynamic var firstYearOfPulish: Int? = 0
+    dynamic var firstYearOfPulish = RealmOptional<Int>()
     dynamic var authors = List<String>()
     dynamic var isbn = List<String>()
     
