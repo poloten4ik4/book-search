@@ -11,8 +11,6 @@ import Foundation
 enum ApiError: Error {
     case decodingError
     case cancelled
-    // Can add more error types here
-    // For example networkError
     case networkError
 }
 
@@ -27,7 +25,6 @@ extension NetworkClient {
                 }
                 response(.success(obj))
             case .failure(let failure):
-                
                 if case .transport(let reason) = failure {
                     if reason == "cancelled" {
                         response(.failure(.cancelled))
@@ -35,7 +32,6 @@ extension NetworkClient {
                     }
                 }
                 // Here we can handle the concrete error and have some logic related to this
-                // But to simplify it for the case study, I will only use .networkError
                 response(.failure(.networkError))
       }
     }

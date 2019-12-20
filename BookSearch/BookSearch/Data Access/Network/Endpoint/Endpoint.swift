@@ -2,8 +2,8 @@
 //  Endpoint.swift
 //  swt
 //
-//  Created by alex kanchurin on 17.12.2019.
-//  Copyright © 2019 alex kanchurin. All rights reserved.
+//  Created by Zaslavskiy Mike on 17.12.2019.
+//  Copyright © 2019 Zaslavskiy Mike. All rights reserved.
 //
 
 import Foundation

@@ -42,6 +42,10 @@ class WishListViewModel {
     }
     
     func obtainBooks() {
+        // TODO: Ideally, we don't need to recreate an array of books each time
+        // This need to be improved. But because of the time limit it will be ommited
+        // In real world apps, I would just monitor new updates, when a few books are added
+        // Without recreating the whole array again and again
         service.booksInWishList.subscribe(onNext: { [weak self] (books) in
             guard let self = self else { return }
             self.books = books
