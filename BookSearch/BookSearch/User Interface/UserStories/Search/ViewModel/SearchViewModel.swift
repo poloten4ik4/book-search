@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import RxRelay
 
 class SearchViewModel {
     
@@ -16,6 +17,7 @@ class SearchViewModel {
     let noResultsText = "Sorry, we couldn't find anything"
     var isLoading = false
     var isNextPageLoadingInProcess = false
+    let searchEvent = BehaviorRelay<String?>(value: nil)
     
     private let service = BookService()
     private var books: [BookInfo] = []
@@ -139,6 +141,23 @@ class SearchViewModel {
         }).disposed(by: disposeBag)
         
         booksInWishListSet = Set(service.obtainWishListBooks())
+        
+        searchEvent.distinctUntilChanged()
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] text in
+                guard let self = self else { return }
+                
+                guard let text = text, !text.isEmpty else {
+                    self.clearData()
+                    self.onReloadData?()
+                    self.onUpdateEmptyResultsVisibility?(false)
+                    return
+                }
+                
+                self.search(for: text)
+                
+            }).disposed(by: disposeBag)
+        
     }
     
     private func processWishListAction(elementIndex: Int, type: WishListOperationType) {

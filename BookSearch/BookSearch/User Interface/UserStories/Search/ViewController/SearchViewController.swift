@@ -123,13 +123,8 @@ class SearchViewController: UIViewController {
         view.addSubview(searchBar)
         searchBar.placeholder = viewModel.searchPlaceholder
         
-        // NOTE: To save the time, I have added RxCocoa to do the throttling.]
-        let throttleInterval = RxTimeInterval.milliseconds(400)
-        searchBar.rx.text.compactMap { $0 }
-            .debounce(throttleInterval, scheduler: MainScheduler.instance).subscribe(onNext: { [weak self] searchString in
-                guard let self = self else { return }
-                self.viewModel.search(for: searchString)
-            }).disposed(by: disposeBag)
+        // NOTE: To save the time, I have added RxCocoa to do the throttling.
+        searchBar.rx.text.bind(to: viewModel.searchEvent).disposed(by: disposeBag)
     }
     
     private func setupActions() {
