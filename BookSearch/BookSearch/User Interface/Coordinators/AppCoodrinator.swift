@@ -20,7 +20,7 @@ class AppCoordinator: RootCoordinator {
 
     func start() {
         guard let tabBarController = self.tabBarController else {
-            assertionFailure("Tab bar controller is nil")
+            assertionFailure("Tab bar controller is nil. Please check the view hierarchy!")
             return
         }
         window.rootViewController = tabBarController
