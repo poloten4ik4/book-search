@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxSwift
 
 class SearchViewModel {
     
@@ -15,16 +16,19 @@ class SearchViewModel {
     var isLoading = false
     var isNextPageLoadingInProcess = false
     
-    
     private let service = BookService()
     private var books: [BookInfo] = []
     private var page = 1
     private var lastSearchedString: String = ""
     private var maximumNumberOfItems: Int = 0
+    private let disposeBag = DisposeBag()
+    private var booksInWishListSet = Set<BookInfo>()
+    
     
     // MARK: - Output
     
     var onReloadData: (() -> Void)?
+    var onUpdateCell: ((Int) -> Void)?
     var onOpenDetail: ((BookInfo) -> Void)?
     var onScrollToTop: (() -> Void)?
     
@@ -102,13 +106,11 @@ class SearchViewModel {
         // It's initial loading
         // We did not have any piece of data related to the search before
         if bookSearchResult.start == 0 {
-            // TODO: add database for isInWishList property
             self.maximumNumberOfItems = bookSearchResult.num_found
-            self.dataSource.viewModels = bookSearchResult.docs.map { BookCellViewModel(with: $0, isInWishList: true) }
+            self.dataSource.viewModels = bookSearchResult.docs.map { BookCellViewModel(with: $0, isInWishList: booksInWishListSet.contains($0)) }
             self.books = bookSearchResult.docs
         } else {
-            // TODO: add database for isInWishList property
-            let nextPageBookViewModels = bookSearchResult.docs.map { BookCellViewModel(with: $0, isInWishList: true) }
+            let nextPageBookViewModels = bookSearchResult.docs.map { BookCellViewModel(with: $0, isInWishList: booksInWishListSet.contains($0)) }
             self.books.append(contentsOf: bookSearchResult.docs)
             self.dataSource.viewModels.append(contentsOf: nextPageBookViewModels)
         }
@@ -126,22 +128,29 @@ class SearchViewModel {
                 self.processWishListAction(elementIndex: tapInfo.cellIndex, type: operationType)
             }
         }
+        
+        service.booksInWishList.subscribe(onNext: { [weak self] (books) in
+            guard let self = self else { return }
+            self.booksInWishListSet = Set(books)
+        }).disposed(by: disposeBag)
+        
+        booksInWishListSet = Set(service.obtainWishListBooks())
     }
     
     private func processWishListAction(elementIndex: Int, type: WishListOperationType) {
         let book = books[elementIndex]
+        var isInWishList = false
         
         switch type {
         case .add:
             service.addToWishList(book)
+            isInWishList = true
         case .remove:
-            // TODO: Ask about the primary key, maybe I can make it non optional
-            guard let bookId = book.key else { return }
-            service.removeFromWishList(bookId)
+            service.removeFromWishList(book.key)
         }
-        // TODO: add database for isInWishList property
-        dataSource.updateViewModel(at: elementIndex, bookInfo: book, isInWishList: true)
-        // TODO: Update the collection view cell at this index
+        
+        dataSource.updateViewModel(at: elementIndex, bookInfo: book, isInWishList: isInWishList)
+        onUpdateCell?(elementIndex)
     }
     
     private func clearData() {

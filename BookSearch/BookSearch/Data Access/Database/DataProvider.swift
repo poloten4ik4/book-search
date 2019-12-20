@@ -10,8 +10,7 @@ import Realm
 import RealmSwift
 
 class DataProvider {
-    func objects<T: Object>(_ type: T.Type, predicate: NSPredicate? = nil) -> Results<T>? {
-        if !isRealmAccessible() { return nil }
+    func objects<T: Object>(_ type: T.Type, predicate: NSPredicate? = nil) -> Results<T> {
 
         let realm = try! Realm()
         realm.refresh()

@@ -150,6 +150,11 @@ class SearchViewController: UIViewController {
             guard let self = self else { return }
             shouldShowLoading ? self.loadingIndicator.startAnimating() : self.loadingIndicator.stopAnimating()
         }
+        
+        viewModel.onUpdateCell = { [weak self] cellIndex in
+            guard let self = self else { return }
+            self.collectionView.reloadItems(at: [IndexPath(row: cellIndex, section: 0)])
+        }
     }
     
     // MARK: - Private. Helpers

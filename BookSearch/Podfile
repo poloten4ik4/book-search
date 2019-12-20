@@ -9,7 +9,8 @@ target 'BookSearch' do
 
   pod 'RxSwift', '~> 5.0'
   pod 'RxCocoa', '~> 5.0'
-  pod 'RealmSwift', '5.0.0-beta.1'
+  pod 'RealmSwift', '4.0'
+  pod "RxRealm"
   pod 'Kingfisher', '~> 5.12'
   
 end

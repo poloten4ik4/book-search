@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 enum WishListOperationType {
     case add
@@ -31,6 +33,7 @@ class BookCell: UICollectionViewCell, ReusableView {
     }
     
     var onTap: ((BookCellInteractionType) -> ())?
+    private var disposeBag: DisposeBag? = DisposeBag()
     
     private let imageView: UIImageView = {
         let view = UIImageView()
@@ -58,12 +61,24 @@ class BookCell: UICollectionViewCell, ReusableView {
         imageView.kf.setImage(with: viewModel.imageURL, placeholder: placeholderImage, options: [.transition(.fade(0.3))])
         let buttonImage = UIImage(named: viewModel.buttonImageName)
         button.setImage(buttonImage, for: .normal)
+        
+        // To avoid multiple subscriptions
+        self.disposeBag = nil
+        self.disposeBag = DisposeBag()
+        
+        guard let disposeBag = self.disposeBag else { return }
+        button.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+            viewModel.isInWishList ? self.removeFromWishList() : self.addToWishList()
+        }).disposed(by: disposeBag)
     }
     
-    
-    // TODO: Add actions
     func addToWishList() {
         onTap?(.wishList(.add))
+    }
+    
+    func removeFromWishList() {
+        onTap?(.wishList(.remove))
     }
   
     // MARK: - Override

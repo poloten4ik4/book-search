@@ -9,7 +9,7 @@
 import RealmSwift
 
 class BookInfoPersistable: Object {
-    @objc dynamic var key: String?
+    @objc dynamic var key: String = ""
     @objc dynamic var title: String = ""
     
     var firstYearOfPulish: Int?

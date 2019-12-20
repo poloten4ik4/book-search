@@ -40,8 +40,8 @@ class SearchDataSource: NSObject, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookCell.reuseId, for: indexPath) as! BookCell
+        
         // Not sure if we had a retain cycle here, maybe capture list is not mandatory
-        // TODO: check for leak
         cell.onTap = { [weak self] type in
             guard let self = self else { return }
             let tapInfo = SearchCellTapInfo(cellIndex: indexPath.row, interactionType: type)

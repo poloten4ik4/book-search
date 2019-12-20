@@ -7,20 +7,29 @@
 //
 
 import Foundation
+//import RealmSwift
+import RxRealm
+import RxSwift
 
 protocol BookServiceProtocol {
     func search(for searchString: String, page: Int, cancelPreviousRequest: Bool,
                 completion: @escaping (Result<BookSearchResult, ApiError>) -> Void)
     func addToWishList(_ bookInfo: BookInfo)
     func removeFromWishList(_ bookInfoKey: String)
-    func obtainWishListBooks() -> [BookInfo]?
+    func obtainWishListBooks() -> [BookInfo]
+    func isInWishList(book: BookInfo) ->Bool
 }
 
 final class BookService: Service, BookServiceProtocol {
-    let realmDataProvider = DataProvider()
-    let translator = BookInfoTranslator()
-    let apiClient = NetworkClientImp()
-    var requestQueue: [URLSessionDataTask] = []
+    private let realmDataProvider = DataProvider()
+    private let translator = BookInfoTranslator()
+    private let apiClient = NetworkClientImp()
+    private var requestQueue: [URLSessionDataTask] = []
+    
+    var booksInWishList: Observable<[BookInfo]>  {
+        return Observable.array(from: realmDataProvider.objects(BookInfoPersistable.self))
+            .map( { return $0.map({ self.translator.translate($0) })  })
+    }
     
     func search(for searchString: String, page: Int, cancelPreviousRequest: Bool = true, completion: @escaping (Result<BookSearchResult, ApiError>) -> Void)  {
         
@@ -54,7 +63,12 @@ final class BookService: Service, BookServiceProtocol {
         realmDataProvider.delete(objectToDelete)
     }
     
-    func obtainWishListBooks() -> [BookInfo]? {
-        return realmDataProvider.objects(BookInfoPersistable.self)?.toArray(ofType: BookInfo.self)
+    func obtainWishListBooks() -> [BookInfo] {
+        return realmDataProvider.objects(BookInfoPersistable.self).map { translator.translate($0) }
+    }
+    
+    func isInWishList(book: BookInfo) -> Bool {
+        // We need to make this operation as fast as possible
+        return true
     }
 }
