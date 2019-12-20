@@ -25,6 +25,8 @@ class BookInfoTranslator {
         
         persistableBookInfo.title = bookInfo.title
         persistableBookInfo.key = bookInfo.key
+        persistableBookInfo.isbn = isbnList
+        persistableBookInfo.authors = authorsList
         
         return persistableBookInfo
     }
