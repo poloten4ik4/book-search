@@ -28,10 +28,12 @@ class ViewControllersFabric {
     }
     
     static func createWishListViewController() -> WishListViewController {
-        let wishListViewController = WishListViewController()
+        let viewModel = WishListViewModel()
+        let viewController = WishListViewController()
+        viewController.viewModel = viewModel
         let screenTitle = Constants.ScreenTitles.wishList
         let tabBarImage = UIImage(named: Constants.ImageNames.wishList)
-        wishListViewController.tabBarItem = UITabBarItem(title: screenTitle, image: tabBarImage, tag: 1)
-        return wishListViewController
+        viewController.tabBarItem = UITabBarItem(title: screenTitle, image: tabBarImage, tag: 1)
+        return viewController
     }
 }

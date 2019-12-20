@@ -13,7 +13,7 @@ struct SearchCellTapInfo {
     let interactionType: BookCellInteractionType
 }
 
-class SearchDataSource: NSObject, UICollectionViewDataSource {
+class BooksDataSource: NSObject, UICollectionViewDataSource {
     
     // MARK: - Input
     

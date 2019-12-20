@@ -27,7 +27,7 @@
 		BDCD698A23A95C9A003E7C77 /* BookInfoTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD698923A95C9A003E7C77 /* BookInfoTranslator.swift */; };
 		BDCD698D23A95CFA003E7C77 /* BookInfoPersistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD698C23A95CFA003E7C77 /* BookInfoPersistable.swift */; };
 		BDCD698F23A9629C003E7C77 /* Realm+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD698E23A9629C003E7C77 /* Realm+Helpers.swift */; };
-		BDCD699B23AA37AD003E7C77 /* SearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD699A23AA37AD003E7C77 /* SearchDataSource.swift */; };
+		BDCD699B23AA37AD003E7C77 /* BooksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD699A23AA37AD003E7C77 /* BooksDataSource.swift */; };
 		BDCD699E23AA3910003E7C77 /* BookCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD699D23AA3910003E7C77 /* BookCellViewModel.swift */; };
 		BDCD69B323AA586F003E7C77 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD69A923AA586F003E7C77 /* Endpoint.swift */; };
 		BDCD69B423AA586F003E7C77 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD69AC23AA586F003E7C77 /* ApiClient.swift */; };
@@ -43,6 +43,7 @@
 		BDCD69C623ABA482003E7C77 /* UIView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD69C523ABA482003E7C77 /* UIView+Reusable.swift */; };
 		BDCD69C923ABA515003E7C77 /* SearchCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD69C823ABA515003E7C77 /* SearchCollectionViewLayout.swift */; };
 		BDCD69CB23ABB663003E7C77 /* UIColor+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD69CA23ABB663003E7C77 /* UIColor+Custom.swift */; };
+		BDCD69CF23ACD27F003E7C77 /* WishListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCD69CE23ACD27F003E7C77 /* WishListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,7 +70,7 @@
 		BDCD698923A95C9A003E7C77 /* BookInfoTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookInfoTranslator.swift; sourceTree = "<group>"; };
 		BDCD698C23A95CFA003E7C77 /* BookInfoPersistable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookInfoPersistable.swift; sourceTree = "<group>"; };
 		BDCD698E23A9629C003E7C77 /* Realm+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Helpers.swift"; sourceTree = "<group>"; };
-		BDCD699A23AA37AD003E7C77 /* SearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataSource.swift; sourceTree = "<group>"; };
+		BDCD699A23AA37AD003E7C77 /* BooksDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksDataSource.swift; sourceTree = "<group>"; };
 		BDCD699D23AA3910003E7C77 /* BookCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCellViewModel.swift; sourceTree = "<group>"; };
 		BDCD69A923AA586F003E7C77 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		BDCD69AC23AA586F003E7C77 /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
@@ -85,6 +86,7 @@
 		BDCD69C523ABA482003E7C77 /* UIView+Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Reusable.swift"; sourceTree = "<group>"; };
 		BDCD69C823ABA515003E7C77 /* SearchCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewLayout.swift; sourceTree = "<group>"; };
 		BDCD69CA23ABB663003E7C77 /* UIColor+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Custom.swift"; sourceTree = "<group>"; };
+		BDCD69CE23ACD27F003E7C77 /* WishListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListViewModel.swift; sourceTree = "<group>"; };
 		CF0178227480D10079771F8A /* Pods-BookSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookSearch.debug.xcconfig"; path = "Target Support Files/Pods-BookSearch/Pods-BookSearch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -304,6 +306,7 @@
 		BD0532D123A8F206009ECB87 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				BDCD69CE23ACD27F003E7C77 /* WishListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -367,7 +370,7 @@
 		BDCD699923AA3796003E7C77 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				BDCD699A23AA37AD003E7C77 /* SearchDataSource.swift */,
+				BDCD699A23AA37AD003E7C77 /* BooksDataSource.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -615,10 +618,11 @@
 				BDCD698F23A9629C003E7C77 /* Realm+Helpers.swift in Sources */,
 				BDCD696823A90022003E7C77 /* SearchCoordinator.swift in Sources */,
 				BDCD69B823AA586F003E7C77 /* NetworkClientImp.swift in Sources */,
-				BDCD699B23AA37AD003E7C77 /* SearchDataSource.swift in Sources */,
+				BDCD699B23AA37AD003E7C77 /* BooksDataSource.swift in Sources */,
 				BDCD696423A8FFF4003E7C77 /* WishListViewController.swift in Sources */,
 				BDCD695E23A8FD7F003E7C77 /* AppCoodrinator.swift in Sources */,
 				BD0532C623A8EF5B009ECB87 /* ServiceProtocol.swift in Sources */,
+				BDCD69CF23ACD27F003E7C77 /* WishListViewModel.swift in Sources */,
 				BDCD69C123AA99A5003E7C77 /* UIViewController+Helpers.swift in Sources */,
 				BDCD69B623AA586F003E7C77 /* ApiEndpoint.swift in Sources */,
 			);

@@ -11,7 +11,7 @@ import RxSwift
 
 class SearchViewModel {
     
-    let dataSource = SearchDataSource()
+    let dataSource = BooksDataSource()
     let searchPlaceholder = "Search for books"
     let noResultsText = "Sorry, we couldn't find anything"
     var isLoading = false
