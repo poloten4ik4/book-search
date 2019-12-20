@@ -10,10 +10,6 @@ import UIKit
 
 class WishListViewController: UIViewController {
     
-    private enum Constants {
-        static let spacing: CGFloat = 16
-    }
-    
     var viewModel: WishListViewModel!
     
     // MARK: - UI elements
@@ -63,7 +59,11 @@ class WishListViewController: UIViewController {
                                       y: topbarHeight,
                                       width: view.bounds.width,
                                       height: view.bounds.height - topbarHeight)
-        (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize = getCellSize()
+        guard let layout = collectionView.collectionViewLayout as? SearchCollectionLayout else {
+            assertionFailure("Layout is in danger")
+            return
+        }
+        layout.itemSize = layout.getCellSize()
     }
     
     private func layoutLoadingIndicator() {
@@ -105,14 +105,6 @@ class WishListViewController: UIViewController {
             guard let self = self else { return }
             self.emptyResultsLabel.isHidden = !shouldShowEmptyLabel
         }
-    }
-    
-    // MARK: - Private. Helpers
-    
-    private func getCellSize() -> CGSize {
-        let width = collectionView.bounds.width
-        let cellWidth = (width - 3 * Constants.spacing) / 2
-        return CGSize(width: cellWidth, height: BookCell.height)
     }
 }
 

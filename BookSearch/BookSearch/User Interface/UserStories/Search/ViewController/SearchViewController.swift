@@ -84,7 +84,11 @@ class SearchViewController: UIViewController {
                                       y: Constants.searchBarHeight + topbarHeight,
                                       width: view.bounds.width,
                                       height: view.bounds.height - Constants.searchBarHeight - topbarHeight)
-        (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize = getCellSize()
+        guard let layout = collectionView.collectionViewLayout as? SearchCollectionLayout else {
+            assertionFailure("Layout is in danger")
+            return
+        }
+        layout.itemSize = layout.getCellSize()
     }
     
     private func layoutSearchBar() {
@@ -172,14 +176,6 @@ class SearchViewController: UIViewController {
             guard let self = self else { return }
             self.collectionView.reloadItems(at: [IndexPath(row: cellIndex, section: 0)])
         }
-    }
-    
-    // MARK: - Private. Helpers
-    
-    private func getCellSize() -> CGSize {
-        let width = collectionView.bounds.width
-        let cellWidth = (width - 3 * Constants.spacing) / 2
-        return CGSize(width: cellWidth, height: BookCell.height)
     }
 }
 

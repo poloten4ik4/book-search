@@ -79,4 +79,12 @@ final class SearchCollectionLayout: UICollectionViewFlowLayout {
         return CGPoint(x: spacing + CGFloat(column) * (spacing + itemSize.width) + itemSize.width / 2,
                        y: spacing + CGFloat(row) * (spacing + itemSize.height) + itemSize.height / 2)
     }
+    
+    func getCellSize() -> CGSize {
+        guard let collection = collectionView else { return .zero }
+        let width = collection.bounds.width
+        let spacing: CGFloat = 16.0
+        let cellWidth = (width - 3 * spacing) / 2
+        return CGSize(width: cellWidth, height: 180)
+    }
 }
