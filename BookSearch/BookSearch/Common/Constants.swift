@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Constants {
+enum PublicConstants {
     enum ImageNames {
         static let wishList = "wishList"
         static let search = "searchIcon"

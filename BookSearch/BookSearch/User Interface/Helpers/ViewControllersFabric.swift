@@ -21,8 +21,8 @@ class ViewControllersFabric {
         let viewModel = SearchViewModel()
         let viewController = SearchViewController()
         viewController.viewModel = viewModel
-        let screenTitle = Constants.ScreenTitles.search
-        let tabBarImage = UIImage(named: Constants.ImageNames.search)
+        let screenTitle = PublicConstants.ScreenTitles.search
+        let tabBarImage = UIImage(named: PublicConstants.ImageNames.search)
         viewController.tabBarItem = UITabBarItem(title: screenTitle, image: tabBarImage, tag: 0)
         return viewController
     }
@@ -31,8 +31,8 @@ class ViewControllersFabric {
         let viewModel = WishListViewModel()
         let viewController = WishListViewController()
         viewController.viewModel = viewModel
-        let screenTitle = Constants.ScreenTitles.wishList
-        let tabBarImage = UIImage(named: Constants.ImageNames.wishList)
+        let screenTitle = PublicConstants.ScreenTitles.wishList
+        let tabBarImage = UIImage(named: PublicConstants.ImageNames.wishList)
         viewController.tabBarItem = UITabBarItem(title: screenTitle, image: tabBarImage, tag: 1)
         return viewController
     }
