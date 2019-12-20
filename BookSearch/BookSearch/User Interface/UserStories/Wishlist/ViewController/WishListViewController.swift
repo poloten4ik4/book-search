@@ -105,11 +105,6 @@ class WishListViewController: UIViewController {
             guard let self = self else { return }
             self.emptyResultsLabel.isHidden = !shouldShowEmptyLabel
         }
-//
-//        viewModel.onUpdateCell = { [weak self] cellIndex in
-//            guard let self = self else { return }
-//            self.collectionView.reloadItems(at: [IndexPath(row: cellIndex, section: 0)])
-//        }
     }
     
     // MARK: - Private. Helpers
