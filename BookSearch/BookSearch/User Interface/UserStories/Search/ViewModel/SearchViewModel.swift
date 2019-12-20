@@ -64,17 +64,20 @@ class SearchViewModel {
             
             service.search(for: searchString, page: page) { [weak self] result in
                 guard let self = self else { return }
-                self.onShowLoading?(false)
-                self.isNextPageLoadingInProcess = false
+                
                 if case .success(let bookSearchResult) = result {
+                    self.onShowLoading?(false)
+                    self.isNextPageLoadingInProcess = false
                     self.processResult(bookSearchResult)
                     self.onReloadData?()
                     self.onUpdateEmptyResultsVisibility?(bookSearchResult.num_found == 0)
                     if self.page == 1 {
                         self.onScrollToTop?()
                     }
-                } else {
-                    // error state
+                } else if case .failure(let error) = result {
+                    if error != .cancelled {
+                        // error state
+                    }
                 }
             }
         }
